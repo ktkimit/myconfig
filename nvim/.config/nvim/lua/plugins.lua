@@ -54,7 +54,15 @@ return require('packer').startup(function()
   }
 
   -- Snippets
-  use 'L3MON4D3/LuaSnip'
+  use {
+    'L3MON4D3/LuaSnip',
+    config =function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end
+  }
+
+  use "rafamadriz/friendly-snippets"
+
 
   -- File explorer
   use {
@@ -138,4 +146,17 @@ return require('packer').startup(function()
     end
   }
 
+  -- Docstrings
+  use {
+    "danymat/neogen",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require('neogen').setup {
+        enabled = true
+      }
+      local opts = { noremap = true, silent = true }
+      vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
+      vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", opts)
+    end
+  }
 end)
