@@ -21,6 +21,6 @@ vim.o.termguicolors = true
 vim.o.updatetime = 300
 vim.o.scrolloff = 8
 vim.o.completeopt = 'menu,menuone,noselect'
-vim.o.timeoutlen = 200
+vim.o.timeoutlen = 500
 
 vim.cmd[[hi CursorLine guibg=#000000]]
