@@ -159,4 +159,15 @@ return require('packer').startup(function()
       vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", opts)
     end
   }
+
+  -- LSP signature
+  use {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require "lsp_signature".setup()
+    end
+  }
+
+  -- Imporve buffer delete
+  use {'ojroques/nvim-bufdel'}
 end)
