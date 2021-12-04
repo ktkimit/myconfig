@@ -1,4 +1,4 @@
--- global options
+-- set global options
 vim.o.encoding="utf-8"
 vim.o.number = true
 vim.o.hlsearch = true
@@ -23,4 +23,8 @@ vim.o.scrolloff = 8
 vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.timeoutlen = 500
 
+-- set global variables
+vim.g.tex_flavor = 'latex'
+
+-- set through vim command
 vim.cmd[[hi CursorLine guibg=#000000]]
