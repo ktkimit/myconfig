@@ -59,6 +59,9 @@ lsp_installer.on_server_ready(function(server)
     if server.name == "texlab" then
       opts.settings = {
         texlab = {
+          build = {
+            forwardSearchAfter = true
+          },
           forwardSearch = {
             executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
             args = {"-g", "%l", "%p", "%f"}
