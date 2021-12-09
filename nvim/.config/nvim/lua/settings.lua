@@ -1,5 +1,4 @@
 -- set global options
-vim.o.encoding="utf-8"
 vim.o.number = true
 vim.o.hlsearch = true
 vim.o.incsearch = true
@@ -9,7 +8,6 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.cursorline = true
 vim.o.colorcolumn = '80'
-vim.o.synmaxcol = 128
 vim.o.swapfile = false
 vim.o.writebackup = false
 vim.o.undofile = true
