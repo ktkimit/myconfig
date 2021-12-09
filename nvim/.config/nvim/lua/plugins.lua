@@ -152,7 +152,14 @@ return require('packer').startup(function()
     requires = "nvim-treesitter/nvim-treesitter",
     config = function()
       require('neogen').setup {
-        enabled = true
+        enabled = true,
+        languages = {
+          python = {
+            template = {
+              annotation_convention = "numpydoc"
+            }
+          }
+        }
       }
       local opts = { noremap = true, silent = true }
       vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
@@ -168,6 +175,57 @@ return require('packer').startup(function()
     end
   }
 
+  -- Diagnostics
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+     vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
+     {silent = true, noremap = true}
+     )
+     vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>",
+     {silent = true, noremap = true}
+     )
+     vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>",
+     {silent = true, noremap = true}
+     )
+     vim.api.nvim_set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>",
+     {silent = true, noremap = true}
+     )
+     vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>",
+     {silent = true, noremap = true}
+     )
+     vim.api.nvim_set_keymap("n", "<leader>xr", "<cmd>Trouble lsp_references<cr>",
+     {silent = true, noremap = true}
+     )
+    end
+  }
+
+  -- Markdown preview
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+  }
+
   -- Imporve buffer delete
   use {'ojroques/nvim-bufdel'}
+
+  -- Markdown flow
+  use{
+    'jakewvincent/mkdnflow.nvim',
+    config = function()
+      require('mkdnflow').setup({
+        default_mappings = false,
+        create_dirs = true,
+        links_relative_to = 'current',
+        evaluate_prefix = false,
+        new_file_prefix = [[]],
+      })
+      vim.api.nvim_set_keymap('n', '<BS>', ':MkdnGoBack<CR>', {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('n', '<CR>', ':MkdnFollowPath<CR>', {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('n', '<Leader>ww', ':e ~/vimwiki/index.md<CR>', {noremap=true, silent=true})
+    end
+  }
 end)

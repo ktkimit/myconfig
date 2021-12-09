@@ -128,5 +128,42 @@
       "\\end{document}"
     ],
     "description": "beamer mit template"
+  },
+  "Preamble: to include pdf+latex": {
+    "prefix": "preamble: pdf_tex",
+    "body": [
+      "\\usepackage{import}",
+      "\\usepackage{pdfpages}",
+      "\\usepackage{xparse}",
+      "",
+      "\\NewDocumentCommand{\\incfig}{ O{./figures} m O{1} }{%",
+      "\t\\def\\svgwidth{#3\\columnwidth}",
+      "\t\\import{#1}{#2.pdf_tex}",
+      "}",
+      "$0"
+    ],
+    "description": "preamble to include pdf+latex figures"
+  },
+  "Figure: pdf+latex": {
+    "prefix": "figure:pdf_tex",
+    "body": [
+      "\\begin{figure}[ht]",
+      "\t\\centering",
+      "\t\\incfig[${2:figures}]{$1}[]",
+      "\t\\caption{$3}",
+      "\t\\label{fig:$2/$1}",
+      "\\end{figure}"
+    ],
+    "description": "add a figure for pdf_tex file"
+  },
+  "Frame": {
+    "prefix": "frame",
+    "body": [
+      "\\begin{frame}",
+      "\t\\frametitle{${1:title}}",
+      "\t$0",  
+      "\\end{frame}"
+    ],
+    "description": "frame environment"
   }
 }
