@@ -11,15 +11,6 @@ return require('packer').startup(function()
     end
   }
 
-  -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    config = function()
-      require('config_plugins.nvim-treesitter')
-    end
-  }
-
   -- Autocompletion
   use {
     'hrsh7th/nvim-cmp',
@@ -34,6 +25,16 @@ return require('packer').startup(function()
       require('config_plugins.nvim-cmp')
     end
   }
+
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require('config_plugins.nvim-treesitter')
+    end
+  }
+
    -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
@@ -110,7 +111,7 @@ return require('packer').startup(function()
   }
 
   -- Autopairs
-  use { 
+  use {
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup{}
