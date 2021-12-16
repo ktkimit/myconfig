@@ -227,6 +227,15 @@ return require('packer').startup(function()
     end
   }
 
+  -- Project management
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup {
+      }
+    end
+  }
+
   -- Markdown preview
   use {
     "iamcco/markdown-preview.nvim",
@@ -253,4 +262,13 @@ return require('packer').startup(function()
       require("config_plugins.telekasten")
     end
   }
+
+  -- -- Spell checker with with tree-sitter highlighting
+  use {
+    'lewis6991/spellsitter.nvim',
+    config = function()
+      require('spellsitter').setup()
+    end
+  }
+
 end)
