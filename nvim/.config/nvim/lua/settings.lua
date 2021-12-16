@@ -22,6 +22,8 @@ vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.timeoutlen = 500
 vim.o.signcolumn = 'yes'
 vim.o.autochdir = true
+vim.o.spell = true
+vim.o.spelllang = 'en_us'
 
 -- set global variables
 vim.g.tex_flavor = 'latex'
