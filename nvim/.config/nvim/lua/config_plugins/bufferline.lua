@@ -57,3 +57,4 @@ vim.api.nvim_set_keymap('n', '<Leader>b]', '<cmd>BufferLineCycleNext<CR>', {nore
 vim.api.nvim_set_keymap('n', '<Leader>b[', '<cmd>BufferLineCyclePrev<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>be', '<cmd>BufferLineSortByExtension<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>bd', '<cmd>BufferLineSortByDirectory<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>bp', '<cmd>BufferLinePick<CR>', {noremap=true, silent=true})
