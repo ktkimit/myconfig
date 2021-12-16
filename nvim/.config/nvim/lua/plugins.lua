@@ -2,7 +2,7 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Language serve protocol
+-- Language serve protocol
   use 'williamboman/nvim-lsp-installer'
   use {
     'neovim/nvim-lspconfig',
@@ -32,6 +32,30 @@ return require('packer').startup(function()
     run = ":TSUpdate",
     config = function()
       require('config_plugins.nvim-treesitter')
+    end
+  }
+
+  -- Debug Adapter Protocol
+  use {
+    'mfussenegger/nvim-dap',
+    config = function()
+      require('config_plugins.dap')
+    end
+  }
+  use {
+    "Pocco81/DAPInstall.nvim",
+    config = function()
+      require('config_plugins.dap-install')
+    end
+  }
+  use { 
+    "rcarriga/nvim-dap-ui", 
+    requires = {"mfussenegger/nvim-dap"}, 
+    config = function()
+      require("dapui").setup()
+      vim.api.nvim_set_keymap('n', '<Leader>du', ":lua require('dapui').toggle()<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('v', '<Leader>de', ":lua require('dapui').eval()<CR>", {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('n', '<Leader>de', ":lua require('dapui').eval()<CR>", {noremap=true, silent=true})
     end
   }
 
@@ -213,20 +237,20 @@ return require('packer').startup(function()
   -- Imporve buffer delete
   use {'ojroques/nvim-bufdel'}
 
-  -- Markdown flow
-  use{
-    'jakewvincent/mkdnflow.nvim',
+  -- Todo comments
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
     config = function()
-      require('mkdnflow').setup({
-        default_mappings = false,
-        create_dirs = true,
-        links_relative_to = 'current',
-        evaluate_prefix = false,
-        new_file_prefix = [[]],
-      })
-      vim.api.nvim_set_keymap('n', '<BS>', ':MkdnGoBack<CR>', {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('n', '<CR>', ':MkdnFollowPath<CR>', {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('n', '<Leader>ww', ':e ~/vimwiki/index.md<CR>', {noremap=true, silent=true})
+      require("todo-comments").setup {}
+    end
+  }
+
+  -- Markdown zettelkasten / wiki
+  use {
+    "renerocksai/telekasten.nvim",
+    config = function()
+      require("config_plugins.telekasten")
     end
   }
 end)

@@ -15,6 +15,10 @@
       {
         "language": "cmake",
         "path": "./snippets/cmake.json"
+      },
+      {
+        "language": "telekasten",
+        "path": "./snippets/telekasten.json"
       }
     ]
   }
