@@ -26,6 +26,27 @@ return require('packer').startup(function()
     end
   }
 
+  -- null-ls
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+    config = function()
+      require("null-ls").setup({
+        diagnostics_format = "[#{c}] #{m} (#{s})",
+        sources = {
+          require("null-ls").builtins.formatting.black,
+          require("null-ls").builtins.diagnostics.flake8,
+          require("null-ls").builtins.formatting.clang_format,
+          require("null-ls").builtins.diagnostics.cppcheck,
+          require("null-ls").builtins.formatting.latexindent,
+          require("null-ls").builtins.diagnostics.chktex
+        },
+      })
+      vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
+      vim.api.nvim_set_keymap('n', '<Leader>fs', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', {noremap=true, silent=true})
+    end
+  }
+
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
@@ -62,7 +83,7 @@ return require('packer').startup(function()
    -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} },
+    requires = {'nvim-lua/plenary.nvim'},
     config = function()
       require('config_plugins.telescope')
     end
