@@ -73,6 +73,10 @@ lsp_installer.on_server_ready(function(server)
           }
         }
       }
+    elseif server.name == 'pyright' or server.name == 'rust_analyzer' then
+      opts.flags = {
+        debounce_text_changes = 150,
+      }
     end
 
     -- This setup() function is exactly the same as lspconfig's setup function.

@@ -258,6 +258,8 @@ return require('packer').startup(function()
   -- Markdown zettelkasten / wiki
   use {
     "renerocksai/telekasten.nvim",
+    opt = true,
+    cmd = {'Telekasten'},
     config = function()
       require("config_plugins.telekasten")
     end
