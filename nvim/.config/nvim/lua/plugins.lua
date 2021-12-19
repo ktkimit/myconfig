@@ -1,3 +1,24 @@
+-- Automatically install packer
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
+end
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -189,6 +210,15 @@ return require('packer').startup(function()
       require("indent_blankline").setup {
         show_end_of_line = true,
       }
+      vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+      vim.g.indent_blankline_filetype_exclude = {
+        "help",
+        "alpha",
+        "packer",
+        "neogitstatus",
+        "NvimTree",
+        "Trouble",
+      }
     end
   }
 
@@ -254,6 +284,7 @@ return require('packer').startup(function()
     config = function()
       require("project_nvim").setup {
       }
+      require('telescope').load_extension('projects')
     end
   }
 
@@ -286,11 +317,19 @@ return require('packer').startup(function()
     end
   }
 
-  -- -- Spell checker with with tree-sitter highlighting
+  -- Spell checker with with tree-sitter highlighting
   use {
     'lewis6991/spellsitter.nvim',
     config = function()
       require('spellsitter').setup()
+    end
+  }
+
+  -- Greeter
+  use {
+    'goolord/alpha-nvim',
+    config = function ()
+      require('config_plugins.alpha-nvim')
     end
   }
 
