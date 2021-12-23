@@ -296,7 +296,12 @@ return require('packer').startup(function()
   }
 
   -- Imporve buffer delete
-  use {'ojroques/nvim-bufdel'}
+  use {
+    'ojroques/nvim-bufdel',
+    config = function()
+      vim.api.nvim_set_keymap('n', '<Leader>bb', '<cmd>BufDel<CR>', {noremap=true, silent=true})
+    end
+  }
 
   -- Todo comments
   use {
@@ -312,6 +317,7 @@ return require('packer').startup(function()
     "renerocksai/telekasten.nvim",
     opt = true,
     cmd = {'Telekasten'},
+    ft = {'markdown'},
     config = function()
       require("config_plugins.telekasten")
     end
