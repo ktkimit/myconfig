@@ -21,7 +21,6 @@ vim.o.scrolloff = 8
 vim.o.completeopt = 'menuone,noselect'
 vim.o.timeoutlen = 500
 vim.o.signcolumn = 'yes'
-vim.o.autochdir = true
 vim.o.spell = false
 vim.o.spelllang = 'en_us'
 
