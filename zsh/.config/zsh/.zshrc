@@ -5,7 +5,7 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%F{7}[%f%F{7}%n%f%F{8}@%f%F{7}%M%f%F{7}]%f %B%F{14}%~%f%b"$'\n'"%F{7}>%f"
+PS1="%F{7}[%f%F{7}%n%f%F{8}@%f%F{7}%M%f%F{7}]%f %B%F{blue}%~%f%b"$'\n'"%F{7}>%f"
 
 # History
 HISTSIZE=10000
@@ -58,7 +58,7 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # Alias
-alias ll="ls -lh"
+alias ll="ls -lh --color=auto --group-directories-first"
 
 # Load plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
