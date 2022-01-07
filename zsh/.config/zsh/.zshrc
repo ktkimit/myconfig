@@ -11,6 +11,7 @@ PS1="%F{7}[%f%F{7}%n%f%F{8}@%f%F{7}%M%f%F{7}]%f %B%F{14}%~%f%b"$'\n'"%F{7}>%f"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
+setopt SHARE_HISTORY
 
 # Basic auto/tab completion:
 autoload -U compinit
