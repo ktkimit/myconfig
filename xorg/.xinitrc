@@ -1,3 +1,3 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-exec dwm
+xset r rate 300 50; exec dwm
