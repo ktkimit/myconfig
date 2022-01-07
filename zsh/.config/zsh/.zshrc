@@ -59,3 +59,4 @@ bindkey -M vicmd v edit-command-line
 
 # Load plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh/plugins/zsh-autosuggestions.zsh 2>/dev/null
