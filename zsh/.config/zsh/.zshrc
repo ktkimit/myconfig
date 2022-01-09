@@ -3,13 +3,32 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%F{7}[%f%F{7}%n%f%F{8}@%f%F{7}%M%f%F{7}]%f %B%F{blue}%~%f%b"$'\n'"%F{7}>%f"
+PS1='%F{7}[%f%F{7}%n%f%F{8}@%f%F{7}%M%f%F{7}]%f %B%F{blue}%~%f%b'$'\n'"%F{7}>%f"
+#
+# git_prompt() {
+#   BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*\(.*\)/\1/')
+# 
+#   if [ ! -z $BRANCH ]; then
+#     echo -n "%F{yellow}$BRANCH"
+# 
+#     if [ ! -z "$(git status --short)" ]; then
+#       echo " %F{red}✗"
+#     fi
+#   fi
+# }
+# 
+# setopt prompt_subst
+# 
+# PS1='
+# %F{blue}%~$(git_prompt)
+# %F{244}%# %F{reset}'
 
 # History
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 setopt SHARE_HISTORY
 
