@@ -19,6 +19,7 @@ dap_install.config(
       request = "launch",
       name = "Launch file",
       program = "${file}",
+      cwd = "${workspaceFolder}",
       pythonPath = function()
         local vnv = os.getenv("VIRTUAL_ENV")
         local conda_env = os.getenv("CONDA_PREFIX")
