@@ -196,10 +196,16 @@ return require('packer').startup(function()
   }
 
   -- Comments
+  -- use {
+  --   'terrortylor/nvim-comment',
+  --   config = function()
+  --     require('nvim_comment').setup()
+  --   end
+  -- }
   use {
-    'terrortylor/nvim-comment',
+    'numToStr/Comment.nvim',
     config = function()
-      require('nvim_comment').setup()
+      require('Comment').setup()
     end
   }
 
