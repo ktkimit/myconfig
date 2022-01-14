@@ -340,9 +340,16 @@ return require('packer').startup(function()
   -- Greeter
   use {
     'goolord/alpha-nvim',
-    config = function ()
+    config = function()
       require('config_plugins.alpha-nvim')
     end
   }
 
+  -- Toggle terminal
+  use {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("config_plugins.toggleterm")
+    end
+  }
 end)
