@@ -23,7 +23,7 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
--- Language serve protocol
+  -- Language serve protocol
   use 'williamboman/nvim-lsp-installer'
   use {
     'neovim/nvim-lspconfig',
@@ -196,12 +196,6 @@ return require('packer').startup(function()
   }
 
   -- Comments
-  -- use {
-  --   'terrortylor/nvim-comment',
-  --   config = function()
-  --     require('nvim_comment').setup()
-  --   end
-  -- }
   use {
     'numToStr/Comment.nvim',
     config = function()
@@ -253,7 +247,9 @@ return require('packer').startup(function()
   use {
     "ray-x/lsp_signature.nvim",
     config = function()
-      require "lsp_signature".setup()
+      require "lsp_signature".setup({
+        hint_enable = false,
+      })
     end
   }
 
@@ -318,17 +314,6 @@ return require('packer').startup(function()
     end
   }
 
-  -- Markdown zettelkasten / wiki
-  use {
-    "renerocksai/telekasten.nvim",
-    opt = true,
-    cmd = {'Telekasten'},
-    ft = {'markdown'},
-    config = function()
-      require("config_plugins.telekasten")
-    end
-  }
-
   -- Spell checker with with tree-sitter highlighting
   use {
     'lewis6991/spellsitter.nvim',
@@ -350,6 +335,23 @@ return require('packer').startup(function()
     "akinsho/toggleterm.nvim",
     config = function()
       require("config_plugins.toggleterm")
+    end
+  }
+
+  -- Code outline
+  use {
+    'stevearc/aerial.nvim',
+    config = function()
+      -- vim.cmd[[hi AerialLine guifg=#cb4b16]]
+    end
+  }
+
+  -- zk
+  use {
+    "mickael-menu/zk-nvim",
+    config = function()
+      vim.env.ZK_NOTEBOOK_DIR = "/Users/ktkim/mynotes"
+      require("config_plugins.zk-nvim")
     end
   }
 end)

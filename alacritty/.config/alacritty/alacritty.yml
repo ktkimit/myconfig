@@ -2,24 +2,24 @@ background_opacity: 0.9
 
 font:
   normal:
-    family: Hack
+    family: Hack Nerd Font
     style: Regular
 
   bold:
-    family: Hack
+    family: Hack Nerd Font
     style: Bold
 
   italic:
-    family: Hack
+    family: Hack Nerd Font
     style: Italic
 
   bold_italic:
-    family: Hack
+    family: Hack Nerd Font
     style: Bold Italic
 
   use_thin_strokes: true
 
-  size: 11.0
+  size: 14.0
 
   offset:
     x: 1
