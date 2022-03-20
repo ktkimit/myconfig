@@ -2,7 +2,7 @@
 title: {{title}}
 date: {{date now}}
 author: {{extra.author}}
-keywords: []
+tags: []
 ---
 
 {{content}}
