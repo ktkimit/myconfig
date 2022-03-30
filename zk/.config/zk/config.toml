@@ -41,7 +41,7 @@ template = "note.md"
 id-charset = "alphanum"
 
 # Length of the generated IDs.
-id-length = 4
+id-length = 6
 
 # Letter case for the random IDs, among lower, upper or mixed.
 id-case = "lower"
