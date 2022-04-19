@@ -19,7 +19,7 @@ if not status_ok then
   return
 end
 
-return require('packer').startup(function()
+return packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -28,7 +28,7 @@ return require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      require('config_plugins.nvim-lsconfig')
+      require('config_plugins.nvim-lspconfig')
     end
   }
 
@@ -82,12 +82,6 @@ return require('packer').startup(function()
     'mfussenegger/nvim-dap',
     config = function()
       require('config_plugins.dap')
-    end
-  }
-  use {
-    "Pocco81/DAPInstall.nvim",
-    config = function()
-      require('config_plugins.dap-install')
     end
   }
   use { 
@@ -157,6 +151,7 @@ return require('packer').startup(function()
   -- Bufferline
   use {
     'akinsho/bufferline.nvim',
+    branch='main',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('config_plugins.bufferline')
@@ -229,10 +224,11 @@ return require('packer').startup(function()
     config = function()
       require('neogen').setup {
         enabled = true,
+        snippet_engine = 'luasnip',
         languages = {
           python = {
             template = {
-              annotation_convention = "numpydoc"
+              annotation_convention = "reST"
             }
           }
         }
@@ -333,6 +329,7 @@ return require('packer').startup(function()
   -- Toggle terminal
   use {
     "akinsho/toggleterm.nvim",
+    branch='main',
     config = function()
       require("config_plugins.toggleterm")
     end
@@ -342,6 +339,18 @@ return require('packer').startup(function()
   use {
     'stevearc/aerial.nvim',
     config = function()
+      require("aerial").setup({
+        on_attach = function(bufnr)
+          -- Toggle the aerial window with <leader>a
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
+          -- Jump forwards/backwards with '{' and '}'
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '[a', '<cmd>AerialPrev<CR>', {})
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', ']a', '<cmd>AerialNext<CR>', {})
+          -- Jump up the tree with '[[' or ']]'
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+        end
+      })
       -- vim.cmd[[hi AerialLine guifg=#cb4b16]]
     end
   }
@@ -352,6 +361,25 @@ return require('packer').startup(function()
     config = function()
       vim.env.ZK_NOTEBOOK_DIR = "/Users/ktkim/mynotes"
       require("config_plugins.zk-nvim")
+    end
+  }
+
+  -- Motion
+  use 'ggandor/lightspeed.nvim'
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
+
+  -- Goto preview
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup{
+        default_mappings = true,
+      }
     end
   }
 end)
