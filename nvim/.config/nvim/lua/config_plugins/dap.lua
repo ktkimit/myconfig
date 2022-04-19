@@ -1,4 +1,7 @@
-local dap = require('dap')
+local status_ok, dap = pcall(require, "dap")
+if not status_ok then
+  return
+end
 
 vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='', texthl='', linehl='', numhl=''})
@@ -19,3 +22,33 @@ vim.api.nvim_set_keymap('n', '<Leader>dq', ":lua require'dap'.terminate()<CR>:lu
 vim.api.nvim_set_keymap('n', '<Leader>dh', ":lua require('dap.ui.widgets').hover()<CR>", {noremap=true, silent=true})
 
 vim.api.nvim_exec([[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]], false)
+
+-- python
+dap.adapters.python = {
+  type = "executable",
+  command = "/Users/ktkim/.local/share/nvim/dapinstall/python/bin/python3.9",
+  args = {"-m", "debugpy.adapter"}
+}
+dap.configurations.python = {
+  {
+    type = "python",
+    request = "launch",
+    name = "Launch file",
+    program = "${file}",
+    cwd = "${workspaceFolder}",
+    justMyCode = false,
+    pythonPath = function()
+      local vnv = os.getenv("VIRTUAL_ENV")
+      local conda_env = os.getenv("CONDA_PREFIX")
+      if vnv ~= nil and vim.fn.executable(vnv .. "/bin/python") then
+        return vnv .. "/bin/python3"
+      elseif conda_env ~= nil and vim.fn.executable(conda_env .. "/bin/python") then
+        return conda_env .. "/bin/python3"
+      else
+        return "/usr/local/bin/python3"
+      end
+    end
+  }
+}
+
+
