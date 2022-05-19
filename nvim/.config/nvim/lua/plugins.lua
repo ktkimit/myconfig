@@ -39,6 +39,7 @@ return packer.startup(function(use)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
     },
@@ -52,19 +53,20 @@ return packer.startup(function(use)
     'jose-elias-alvarez/null-ls.nvim',
     requires = {'nvim-lua/plenary.nvim'},
     config = function()
-      require("null-ls").setup({
-        diagnostics_format = "[#{c}] #{m} (#{s})",
-        sources = {
-          require("null-ls").builtins.formatting.black,
-          require("null-ls").builtins.diagnostics.flake8,
-          require("null-ls").builtins.formatting.clang_format,
-          require("null-ls").builtins.diagnostics.cppcheck,
-          require("null-ls").builtins.formatting.latexindent,
-          require("null-ls").builtins.diagnostics.chktex
-        },
-      })
-      vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
-      vim.api.nvim_set_keymap('n', '<Leader>fs', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', {noremap=true, silent=true})
+      -- require("null-ls").setup({
+      --   diagnostics_format = "[#{c}] #{m} (#{s})",
+      --   sources = {
+      --     require("null-ls").builtins.formatting.black,
+      --     require("null-ls").builtins.diagnostics.flake8,
+      --     require("null-ls").builtins.formatting.clang_format,
+      --     require("null-ls").builtins.diagnostics.cppcheck,
+      --     require("null-ls").builtins.formatting.latexindent,
+      --     require("null-ls").builtins.diagnostics.chktex
+      --   },
+      -- })
+      -- vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
+      -- vim.api.nvim_set_keymap('n', '<Leader>fs', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', {noremap=true, silent=true})
+      require('config_plugins.null-ls')
     end
   }
 
@@ -76,6 +78,7 @@ return packer.startup(function(use)
       require('config_plugins.nvim-treesitter')
     end
   }
+  use "nvim-treesitter/nvim-treesitter-refactor"
 
   -- Debug Adapter Protocol
   use {
@@ -255,13 +258,13 @@ return packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup {}
-     vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
+     vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
      {silent = true, noremap = true}
      )
-     vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>",
+     vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>",
      {silent = true, noremap = true}
      )
-     vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>",
+     vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>",
      {silent = true, noremap = true}
      )
      vim.api.nvim_set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>",
@@ -314,7 +317,9 @@ return packer.startup(function(use)
   use {
     'lewis6991/spellsitter.nvim',
     config = function()
-      require('spellsitter').setup()
+      require('spellsitter').setup({
+        enable = true,
+      })
     end
   }
 
@@ -382,4 +387,8 @@ return packer.startup(function(use)
       }
     end
   }
+
+  -- better quickfix window
+  use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+
 end)

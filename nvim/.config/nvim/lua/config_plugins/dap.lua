@@ -36,7 +36,7 @@ dap.configurations.python = {
     name = "Launch file",
     program = "${file}",
     cwd = "${workspaceFolder}",
-    justMyCode = false,
+    -- justMyCode = false,
     pythonPath = function()
       local vnv = os.getenv("VIRTUAL_ENV")
       local conda_env = os.getenv("CONDA_PREFIX")
@@ -51,4 +51,5 @@ dap.configurations.python = {
   }
 }
 
-
+-- lad from json file like vscode
+require('dap.ext.vscode').load_launchjs()
