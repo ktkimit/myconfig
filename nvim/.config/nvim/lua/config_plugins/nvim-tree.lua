@@ -50,4 +50,9 @@ require'nvim-tree'.setup {
       error = "",
     },
   },
+  actions = {
+    open_file ={
+      quit_on_open = true,
+    }
+  },
 }
