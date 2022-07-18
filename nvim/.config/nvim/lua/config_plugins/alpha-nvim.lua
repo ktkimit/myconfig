@@ -36,3 +36,5 @@ dashboard.section.buttons.opts.hl = "Keyword"
 
 dashboard.opts.opts.noautocmd = true
 alpha.setup(dashboard.opts)
+
+vim.api.nvim_set_keymap('n', '<Leader><Leader>', '<cmd>Alpha<CR>', {noremap=true, silent=true})

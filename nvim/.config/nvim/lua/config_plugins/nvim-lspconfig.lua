@@ -65,7 +65,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'ltex' }
+local servers = { 'pyright' }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -74,16 +74,22 @@ for _, lsp in pairs(servers) do
 end
 
 lspconfig.texlab.setup{
-  texlab = {
-    build = {
-      forwardSearchAfter = true,
-    },
-    forwardSearch = {
-      executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
-      args = {"-g", "%l", "%p", "%f"}
+  settings = {
+    texlab = {
+      build = {
+        forwardSearchAfter = true,
+      },
+      forwardSearch = {
+        executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
+        args = {"-g", "%l", "%p", "%f"}
+      },
     },
   },
   on_attach = on_attach,
+  capabilities = capabilities
+}
+
+lspconfig.ltex.setup{
 }
 
 lspconfig.clangd.setup{
