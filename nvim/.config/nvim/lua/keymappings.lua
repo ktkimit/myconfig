@@ -29,3 +29,5 @@ vim.api.nvim_set_keymap('t', '<Leader><ESC>', '<C-\\><C-n>', {silent=true})
 -- remove highlights
 vim.api.nvim_set_keymap('n', '<ESC>', ':noh<CR>', {noremap=true, silent=true})
 
+-- close quickfix window
+vim.api.nvim_set_keymap('n', '<Leader>c', ':cclose<CR>', {silent=true})

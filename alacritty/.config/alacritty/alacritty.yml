@@ -1,4 +1,5 @@
-background_opacity: 0.9
+
+transparent_background_colors: true
 
 font:
   normal:
@@ -33,6 +34,7 @@ selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
 window:
+  opacity: 0.9
   padding:
     x: 2
     y: 2
@@ -101,6 +103,8 @@ colors:
     cyan:    '#427b58'
     white:   '#928374'
   # indexed_colors: []
+  transparent_background_colors: true
+
 
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 

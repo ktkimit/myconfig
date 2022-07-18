@@ -163,12 +163,15 @@ return packer.startup(function(use)
 
   -- Color scheme
   use {
-    'ktkimit/gruvbox.nvim',
-    requires = {"rktjmp/lush.nvim"},
+    -- 'ktkimit/gruvbox.nvim',
+    -- requires = {"rktjmp/lush.nvim"},
+    'ellisonleao/gruvbox.nvim',
     config = function()
       vim.o.background = "dark"
-      vim.g.gruvbox_transparent_bg = true
-      vim.g.gruvbox_italic = true
+      vim.g.gruvbox_transparent_bg = 1
+      vim.g.gruvbox_italic = 1
+      vim.g.gruvbox_improved_strings = 1
+      vim.g.gruvbox_improved_warnings = 1
       vim.cmd([[colorscheme gruvbox]])
       vim.cmd[[hi CursorLine guibg=#000000]]
     end
@@ -391,4 +394,9 @@ return packer.startup(function(use)
   -- better quickfix window
   use {'kevinhwang91/nvim-bqf', ft = 'qf'}
 
+  -- nvim-gps
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
 end)
