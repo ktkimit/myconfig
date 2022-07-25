@@ -13,7 +13,7 @@ local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
 -- hover sources
-local hover = null_ls.builtins.hover
+-- local hover = null_ls.builtins.hover
 
 -- completion sources
 local completion = null_ls.builtins.completion
@@ -24,20 +24,12 @@ local sources = {
   diagnostics.flake8,
   diagnostics.pydocstyle,
   formatting.black,
-  -- c, cpp
-  -- diagnostics.clang-tidy,
-  formatting.clang_format,
   -- tex, markdown
   code_actions.proselint,
   diagnostics.proselint
 }
 
 null_ls.setup({
-  debug = false,
   diagnostics_format = "[#{c}] #{m} (#{s})",
   sources = sources,
 })
-
-vim.api.nvim_set_keymap('n', '<Leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<Leader>fs', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', {noremap=true, silent=true})
-

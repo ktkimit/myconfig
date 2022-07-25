@@ -1,7 +1,15 @@
-require('telescope').setup{
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
+  return
+end
+
+telescope.setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    file_ignore_patters = {
+      "^__pycache__/"
+    },
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)
@@ -21,12 +29,16 @@ require('telescope').setup{
     -- builtin picker
   },
   extensions = {
-    fuzzy = true,                    -- false will only do exact matching
-    override_generic_sorter = true,  -- override the generic sorter
-    override_file_sorter = true,     -- override the file sorter
-    case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
   }
 }
+
+telescope.load_extension('fzf')
 
 vim.api.nvim_set_keymap('n', '<Leader>tf', '<cmd>Telescope find_files<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>tg', '<cmd>Telescope live_grep<CR>', {noremap=true, silent=true})
