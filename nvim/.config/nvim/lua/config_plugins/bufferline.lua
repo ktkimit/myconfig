@@ -1,7 +1,12 @@
-require('bufferline').setup {
+local status_ok, bufferline = pcall(require, "bufferline")
+if not status_ok then
+  return
+end
+
+bufferline.setup{
   options = {
-    -- numbers = "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    -- number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
+    mode = "buffers",
+    numbers = "none", 
     close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"

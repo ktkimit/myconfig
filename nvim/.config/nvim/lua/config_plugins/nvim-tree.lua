@@ -29,6 +29,7 @@ require'nvim-tree'.setup {
   },
   renderer = {
     icons = {
+      webdev_colors = true,
       show = {
         git = true,
         folder = true,
@@ -42,6 +43,7 @@ require'nvim-tree'.setup {
           unstaged = "",
           staged = "S",
           unmerged = "",
+          renamed = "➜",
           deleted = "",
           untracked = "U",
           ignored = "◌",
