@@ -1,7 +1,12 @@
-require('bufferline').setup {
+local status_ok, bufferline = pcall(require, "bufferline")
+if not status_ok then
+  return
+end
+
+bufferline.setup{
   options = {
-    -- numbers = "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    -- number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
+    mode = "buffers",
+    numbers = "none", 
     close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
@@ -47,14 +52,16 @@ require('bufferline').setup {
     show_tab_indicators = true,
     persist_buffer_sort = true,
     separator_style = "thin",
-    enforce_regular_tabs = false,
+    enforce_regular_tabs = true,
     always_show_bufferline = true,
     sort_by = 'id',
   }
 }
 
-vim.api.nvim_set_keymap('n', '<Leader>b]', '<cmd>BufferLineCycleNext<CR>', {noremap=true, silent=true})
-vim.api.nvim_set_keymap('n', '<Leader>b[', '<cmd>BufferLineCyclePrev<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', ']b', '<cmd>BufferLineCycleNext<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>be', '<cmd>BufferLineSortByExtension<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>bd', '<cmd>BufferLineSortByDirectory<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>bp', '<cmd>BufferLinePick<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>bcl', '<cmd>BufferLineCloseLeft<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>bcr', '<cmd>BufferLineCloseRight<CR>', {noremap=true, silent=true})

@@ -77,9 +77,6 @@ nnoremap <leader>zp :lua require('telekasten').preview_img()<CR>
 nnoremap <leader>zm :lua require('telekasten').browse_media()<CR>
 nnoremap <leader>z# :lua require('telekasten').show_tags()<CR>
 nnoremap <leader>zc :lua require('telekasten').panel()<CR>
-inoremap <leader>[ <cmd>:lua require('telekasten').insert_link({ i=true })<CR>
-inoremap <leader>zt <cmd>:lua require('telekasten').toggle_todo({ i=true })<CR>
-inoremap <leader># <cmd>lua require('telekasten').show_tags({i = true})<CR>
 hi tklink ctermfg=72 guifg=#689d6a cterm=bold,underline gui=bold,underline
 hi tkBrackets ctermfg=gray guifg=gray
 hi tkHighlight ctermbg=yellow ctermfg=darkred cterm=bold guibg=yellow guifg=darkred gui=bold
@@ -89,5 +86,8 @@ hi tkTag ctermfg=175 guifg=#d3869B
 ]],
 false
 )
+-- inoremap <leader>[ <cmd>:lua require('telekasten').insert_link({ i=true })<CR>
+-- inoremap <leader>zt <cmd>:lua require('telekasten').toggle_todo({ i=true })<CR>
+-- inoremap <leader># <cmd>lua require('telekasten').show_tags({i = true})<CR>
 
 vim.api.nvim_set_keymap('n', '<Leader>zs', ":lua require('telekasten').new_templated_note()<CR>slip/<C-r>=strftime('%Y%m%d%H%M%S')<CR><CR>new_slip<CR>", {noremap=true, silent=true})

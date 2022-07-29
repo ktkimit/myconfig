@@ -51,10 +51,10 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-local Terminal  = require('toggleterm.terminal').Terminal
-
-local ipython = Terminal:new({ cmd = "ipython", hidden = true })
-
-function _IPYTHON_TOGGLE()
-	ipython:toggle()
-end
+-- local Terminal  = require('toggleterm.terminal').Terminal
+--
+-- local ipython = Terminal:new({ cmd = "ipython", hidden = true })
+--
+-- function _IPYTHON_TOGGLE()
+-- 	ipython:toggle()
+-- end
