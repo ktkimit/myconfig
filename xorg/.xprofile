@@ -1,0 +1,2 @@
+# Enable natural scrolling
+xinput --set-prop 11 324 1 &
