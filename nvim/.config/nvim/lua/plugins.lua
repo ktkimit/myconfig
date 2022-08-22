@@ -23,6 +23,15 @@ return packer.startup(function(use)
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
 
+  -- To speed up neovim's starting time
+  use {
+    'lewis6991/impatient.nvim',
+    config = function()
+      require("impatient")
+    end
+  }
+  use "nathom/filetype.nvim"
+
   -- Useful lua functions used by many plugins
   use "nvim-lua/plenary.nvim"
 
@@ -102,12 +111,12 @@ return packer.startup(function(use)
   }
 
   -- Colorizer
-  -- use {
-  --   "norcalli/nvim-colorizer.lua",
-  --   config = function()
-  --     require("config_plugins.colorizer")
-  --   end
-  -- }
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("config_plugins.colorizer")
+    end
+  }
   
   -- use windwp/nvim-spectre
 

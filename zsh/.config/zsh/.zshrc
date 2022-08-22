@@ -2,7 +2,7 @@
 setopt appendhistory
 
 # Some useful options (man zshoptions)
-setopt autocd extendedglob nomatch menucomplete
+setopt auto_cd auto_pushd extendedglob nomatch menucomplete
 setopt interactive_comments
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
@@ -39,7 +39,9 @@ zsh_add_file "zsh-prompt"
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-fzf"
+zsh_add_file "zsh-lf"
  
 # Load plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zsh-users/zsh-completions"

@@ -1,0 +1,9 @@
+gui:
+  theme:
+    activeBorderColor:
+      - blue
+      - bold
+  showIcons: true
+
+os:
+  editCommand: 'nvim'
