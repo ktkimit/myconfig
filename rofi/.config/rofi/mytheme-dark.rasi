@@ -1,0 +1,102 @@
+* {
+  color-white: rgba(255,255,255,1);
+  color-gray1: rgba(194,192,191,1);
+  color-gray2: rgba(138,139,140,1);
+
+  color-black: rgba(0,0,0,1);
+  color-black1: rgba( 36, 36, 36, 0.9 ); 
+
+  color-orange1: rgba(255, 147, 5, 1);
+
+  background-color: transparent;
+  text-color: @color-gray1;
+}
+
+window {
+  background-color: @color-black1;
+
+  padding: 10;
+  width: 40%;
+}
+
+element {
+  padding: 1px;
+  text-color: @color-gray2; 
+  background-color: transparent;
+}
+
+element selected{
+  background-color: @color-black;
+  text-color: @color-white;
+}
+
+element-text {
+  background-color: inherit;
+  text-color:       inherit;
+}
+
+element-icon {
+  size: 1em;
+  padding: 0 2px;
+}
+
+prompt, entry, element-text, element-icon {
+  vertical-align: 0.5;
+}
+
+inputbar {
+  spacing: 0;
+  padding: 10px;
+  children:   [prompt, textbox-prompt-colon, entry, case-indicator ];
+}
+
+
+prompt {
+  spacing: 0;
+  text-color: @color-gray1;
+}
+
+textbox-prompt-colon {
+  expand:     false;
+  str:        ":";
+  margin:     0px 0.3em 0em 0em ;
+  text-color: @color-gray1;
+}
+
+entry {
+  spacing: 0;
+}
+
+case-indicator{
+  spacing: 0;
+}
+
+listview {
+  /* lines:      10; */
+  columns:    3;
+  fixed-height:   0;
+  border:         2px 0 0;
+  border-color:   @color-gray1;
+  padding: 2px 0 0;
+}
+
+mainbox {
+  border:  0;
+  padding: 0;
+}
+
+mode-switcher {
+  border: 2px 0px 0px ;
+  border-color: @color-gray1;
+}
+
+button {
+  spacing:    0;
+  text-color: @color-gray1;
+}
+
+button.selected {
+  text-color: @color-orange1;
+}
+
+

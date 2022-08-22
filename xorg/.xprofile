@@ -1,2 +1,5 @@
 # Enable natural scrolling
-xinput --set-prop 11 324 1 &
+xinput --set-prop 11 328 1 &
+
+# Change capslock to ctrl
+setxkbmap -option ctrl:nocaps &
