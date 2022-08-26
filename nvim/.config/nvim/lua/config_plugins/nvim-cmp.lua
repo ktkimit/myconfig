@@ -126,7 +126,7 @@ cmp.setup.cmdline(':', {
     { name = 'path' }
   }, {
       { name = 'cmdline' },
-      { name = 'cmdline_history' },
+      -- { name = 'cmdline_history' },
     } 
   )
 })

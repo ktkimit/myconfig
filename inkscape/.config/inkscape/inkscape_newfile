@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sample="/Users/ktkim/myconfig/inkscape/.config/inkscape/temp.svg"
+dr=$1
+
+cp "$sample" "$dr"
+inkscape "$dr"
