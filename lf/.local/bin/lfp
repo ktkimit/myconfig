@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -t 0 ]; then
+  lf
+else
+  $TERMINAL -t "~/.config/lf/lfub" -e zsh -c 'tmp="$(mktemp)" && command ~/.config/lf/lfub -last-dir-path="$tmp" "$@" && test -f "$tmp" && dir="$(command cat "$tmp")" && rm -f "$tmp" && test -d "$dir" && cd "$dir" && exec $SHELL'
+fi
+
+# $TERMINAL -t "lf" -e zsh -c 'tmp="$(mktemp)" && command lf -last-dir-path="$tmp" "$@" && test -f "$tmp" && dir="$(command cat "$tmp")" && rm -f "$tmp" && test -d "$dir" && cd "$dir" && exec $SHELL'

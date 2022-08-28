@@ -312,7 +312,7 @@ return packer.startup(function(use)
   use {
     "mickael-menu/zk-nvim",
     config = function()
-      vim.env.ZK_NOTEBOOK_DIR = "/Users/ktkim/mynotes"
+      vim.env.ZK_NOTEBOOK_DIR = "/home/ktkim/notes"
       require("config_plugins.zk-nvim")
     end
   }
