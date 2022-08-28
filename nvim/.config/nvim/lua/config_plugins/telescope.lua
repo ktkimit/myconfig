@@ -39,6 +39,7 @@ telescope.setup{
 }
 
 telescope.load_extension('fzf')
+telescope.load_extension('zk')
 
 vim.api.nvim_set_keymap('n', '<Leader>tf', '<cmd>Telescope find_files<CR>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>tg', '<cmd>Telescope live_grep<CR>', {noremap=true, silent=true})

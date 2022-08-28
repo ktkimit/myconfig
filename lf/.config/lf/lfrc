@@ -3,3 +3,17 @@ set icons true
 
 set previewer "~/.config/lf/previewer.sh"
 set cleaner "~/.config/lf/clear_img.sh"
+
+cmd open $xdg-open $f
+
+cmd bulkrename ${{
+    vimv $fx
+
+    lf -remote "send $id load"
+    lf -remote "send $id unselect"
+}}
+
+cmd trash %trash-put $fx
+
+map R bulkrename
+map D trash
