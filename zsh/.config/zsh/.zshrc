@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Some useful options (man zshoptions)
 setopt appendhistory
 setopt auto_cd auto_pushd extendedglob nomatch #menucomplete

@@ -20,7 +20,6 @@ local function attach_navic(client, bufnr)
   if not status_ok then
     return
   end
-
   navic.attach(client, bufnr)
 end
 
@@ -170,7 +169,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     local cmake_opts = require("config_plugins.lsp.server_config.cmake")
     opts = vim.tbl_deep_extend("force", cmake_opts, opts)
   end
-
 
   lspconfig[server.name].setup(opts)
 end

@@ -15,3 +15,4 @@ Print
 # scrot
 shift + Print
   scrot "${HOME}/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png" --focused
+
