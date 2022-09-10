@@ -5,5 +5,9 @@ gui:
       - bold
   showIcons: true
 
+git:
+  log:
+    showGraph: 'always'
+
 os:
   editCommand: 'nvim'

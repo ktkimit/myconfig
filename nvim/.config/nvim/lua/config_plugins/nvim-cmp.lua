@@ -138,7 +138,7 @@ cmp.setup.cmdline(':', {
 
 cmp_dictionary.setup({
   dic = {
-    ["*"] = { "/usr/share/dict/words" },
+    ["*"] = { "/home/ktkim/.local/share/dict/american_english.dic" },
   },
 
   exact = 2,

@@ -1,8 +1,8 @@
 #!/bin/sh
-setopt appendhistory
 
 # Some useful options (man zshoptions)
-setopt auto_cd auto_pushd extendedglob nomatch menucomplete
+setopt appendhistory
+setopt auto_cd auto_pushd extendedglob nomatch #menucomplete
 setopt interactive_comments
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')

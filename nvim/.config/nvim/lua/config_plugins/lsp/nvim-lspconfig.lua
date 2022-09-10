@@ -20,6 +20,7 @@ local function attach_navic(client, bufnr)
   if not status_ok then
     return
   end
+
   navic.attach(client, bufnr)
 end
 
@@ -99,8 +100,7 @@ local on_attach = function(client, bufnr)
   --   })
   -- end
 
-  -- attach_navic(client, bufnr)
-  require("nvim-navic").attach(client, bufnr)
+  attach_navic(client, bufnr)
 end
 
 local lsp_flags = {
@@ -151,6 +151,11 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     opts = vim.tbl_deep_extend("force", clangd_opts, opts)
   end
 
+  if server.name == "fortls" then
+    local fortls_opts = require("config_plugins.lsp.server_config.fortls")
+    opts = vim.tbl_deep_extend("force", fortls_opts, opts)
+  end
+
   if server.name == "texlab" then
     local texlab_opts = require("config_plugins.lsp.server_config.texlab")
     opts = vim.tbl_deep_extend("force", texlab_opts, opts)
@@ -160,6 +165,12 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     local ltex_opts = require("config_plugins.lsp.server_config.ltex")
     opts = vim.tbl_deep_extend("force", ltex_opts, opts)
   end
+
+  if server.name == "cmake" then
+    local cmake_opts = require("config_plugins.lsp.server_config.cmake")
+    opts = vim.tbl_deep_extend("force", cmake_opts, opts)
+  end
+
 
   lspconfig[server.name].setup(opts)
 end

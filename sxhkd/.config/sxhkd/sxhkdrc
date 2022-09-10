@@ -1,7 +1,17 @@
 # rofi
 super + d
   rofi -show drun -show-icons
-super + p
+super + r
   rofi -show run -show-icons
 super + c
   rofi -show calc -modi calc -no-show-match -no-sort
+super + f
+  rofi_find_file.sh
+
+# flameshot
+Print
+  flameshot gui
+
+# scrot
+shift + Print
+  scrot "${HOME}/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png" --focused

@@ -9,8 +9,10 @@ local servers = {
   "sumneko_lua",
   "pyright",
   "clangd",
+  "fortls",
   "texlab",
   "ltex",
+  "cmake",
 }
 
 local settings = {

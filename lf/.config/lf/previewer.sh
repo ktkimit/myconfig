@@ -53,6 +53,23 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/zip) 
       atool --list -- "$@"
       ;;
+    # */pdf)
+    #   if [ -n "$FIFO_UEBERZUG" ]; then
+    #     cache="$(hash "$file")"
+    #     cache "$cache.jpg" "$@"
+    #     pdftoppm -f 1 -l 1 \
+    #     -scale-to-x "$default_x" \
+    #     -scale-to-y -1 \
+    #     -singlefile \
+    #     -jpeg \
+    #     -- "$file" "$cache"
+    #     draw "$cache.jpg" "$@"
+    #   else
+    #     pdftotext -nopgbrk -q -- "$file" -
+    #     exit 0
+    #   fi
+    #   ;;
+
     # audio/* | application/octet-stream) mediainfo "$1" || exit 1 ;;
     # */pdf)
     #   CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
