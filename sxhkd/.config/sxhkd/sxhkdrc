@@ -4,7 +4,7 @@ super + d
 super + r
   rofi -show run -show-icons
 super + c
-  rofi -show calc -modi calc -no-show-match -no-sort
+  rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '\{result\}' | xclip -sel clip"
 super + f
   rofi_find_file.sh
 

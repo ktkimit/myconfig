@@ -13,6 +13,8 @@ local servers = {
   "texlab",
   "ltex",
   "cmake",
+  "tsserver",
+  -- "zk",
 }
 
 local settings = {

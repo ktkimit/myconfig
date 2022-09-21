@@ -1,0 +1,34 @@
+daemon:
+  modules:
+    - Xim
+    - Wayland
+    - Indicator
+indicator:
+  icon_color: Black
+log:
+  global_level: DEBUG
+engine:
+  default_category: Latin
+  global_category_state: false
+  global_hotkeys:
+    Super-Space:
+      behavior:
+        Toggle:
+          - Hangul
+          - Latin
+      result: Consume
+  xim_preedit_font:
+    - D2Coding
+    - 15.0
+  latin:
+    layout: Qwerty
+    preferred_direct: true
+  hangul:
+    layout: dubeolsik
+    word_commit: false
+    preedit_johab: Needed
+    addons:
+      all:
+        - ComposeChoseongSsang
+      dubeolsik:
+        - TreatJongseongAsChoseong
