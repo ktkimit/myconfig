@@ -259,7 +259,6 @@ return packer.startup(function(use)
     end
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  -- use "nvim-telescope/telescope-media-files.nvim"
 
   -- Debug Adapter Protocol
   use {
@@ -325,6 +324,7 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
+
 
   -- use {"is0n/jaq-nvim"}
 

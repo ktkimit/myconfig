@@ -14,7 +14,6 @@ local servers = {
   "ltex",
   "cmake",
   "tsserver",
-  -- "zk",
 }
 
 local settings = {

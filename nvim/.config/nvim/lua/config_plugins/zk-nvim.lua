@@ -22,7 +22,8 @@ zk.setup({
 local opts = { noremap=true, silent=false }
 
 -- Create a new note after asking for its title.
-vim.api.nvim_set_keymap("n", "<leader>zn", "<Cmd>ZkNew { dir=vim.fn.input('Dir: '), title = vim.fn.input('Title: ') }<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<leader>zn", "<Cmd>ZkNew { dir=vim.fn.input('Dir: '), title = vim.fn.input('Title: ') }<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>zn", "<Cmd>ZkNew { dir=vim.env.ZK_NOTEBOOK_DIR..'/wiki', title = vim.fn.input('Title: ') }<CR>", opts)
 -- Create a daily note
 vim.api.nvim_set_keymap("n", "<leader>zd", "<Cmd>ZkNew { dir=vim.env.ZK_NOTEBOOK_DIR..'/daily' }<CR>", opts)
 

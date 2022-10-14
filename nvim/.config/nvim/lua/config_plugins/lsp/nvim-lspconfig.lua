@@ -175,11 +175,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
   end
 
-  -- if server.name == "zk" then
-  --   local zk_opts = require("config_plugins.lsp.server_config.zk")
-  --   opts = vim.tbl_deep_extend("force", zk_opts, opts)
-  -- end
-
   lspconfig[server.name].setup(opts)
 end
 
