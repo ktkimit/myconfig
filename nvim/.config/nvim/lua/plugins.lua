@@ -191,7 +191,13 @@ return packer.startup(function(use)
 
   -- Language serve protocol
   use { 'neovim/nvim-lspconfig' }
-  use { 'williamboman/nvim-lsp-installer' }
+  use {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end
+  }
+  use { "williamboman/mason-lspconfig.nvim" }
 
   -- LSP others
   use {

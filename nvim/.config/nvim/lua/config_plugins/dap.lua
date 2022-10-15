@@ -49,7 +49,7 @@ vim.api.nvim_set_keymap('n', '<Leader>de', ":lua require('dapui').eval()<CR>", {
 -- python
 dap.adapters.python = {
   type = "executable",
-  command = "/Users/ktkim/.local/share/nvim/dapinstall/python/bin/python3.9",
+  command = "/home/ktkim/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
   args = {"-m", "debugpy.adapter"}
 }
 dap.configurations.python = {
@@ -68,11 +68,40 @@ dap.configurations.python = {
       elseif conda_env ~= nil and vim.fn.executable(conda_env .. "/bin/python") then
         return conda_env .. "/bin/python3"
       else
-        return "/usr/local/bin/python3"
+        return "/usr/bin/python3"
       end
     end
   }
 }
 
--- lad from json file like vscode
+-- cpp
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = '/home/ktkim/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "cppdbg",
+    request = "launch",
+    MIMode = 'gdb',
+    miDebuggerPath = '/usr/bin/gdb',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+    setupCommands = {  
+      { 
+        text = '-enable-pretty-printing',
+        description =  'enable pretty printing',
+        ignoreFailures = false 
+      },
+    },
+  },
+}
+
+-- load from json file like vscode
 require('dap.ext.vscode').load_launchjs()

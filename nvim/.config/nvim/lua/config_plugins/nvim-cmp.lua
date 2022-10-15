@@ -113,6 +113,11 @@ cmp.setup {
       end
     end, { "i", "s" }),
   }),
+
+  enabled = function()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+        or require("cmp_dap").is_dap_buffer()
+  end
 }
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -150,7 +155,7 @@ cmp_dictionary.setup({
   debug = false,
 })
 
-cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
   sources = {
     { name = "dap" },
   },

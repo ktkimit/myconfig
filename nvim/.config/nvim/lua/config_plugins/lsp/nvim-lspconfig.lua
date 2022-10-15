@@ -3,16 +3,10 @@ if not lspconfig_ok then
   return
 end
 
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-  return
-end
-
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
   return
 end
-
 
 local function attach_navic(client, bufnr)
   vim.g.navic_silence = true
@@ -112,71 +106,82 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
-  lspconfig[server.name].setup{
-    capabilities = capabilities,
-  }
+local status_mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not status_mason_lspconfig_ok then
+  vim.notify("can not find mason-lspconfig!")
+  return
 end
 
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
-  opts = {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
-  
-  if server.name == "jsonls" then
-    local jsonls_opts = require("config_plugins.lsp.server_config.jsonls")
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-  end
+mason_lspconfig.setup({})
 
-  if server.name == "yamlls" then
-    local yamlls_opts = require("config_plugins.lsp.server_config.yamlls")
-    opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
-  end
+mason_lspconfig.setup_handlers({
+  function (server_name) -- default handler (optional)
+    lspconfig[server_name].setup {
+      on_attach = on_attach,
+      flags = lsp_flags,
+      capabilities = capabilities,
+    }
+  end,
 
-  if server.name == "sumneko_lua" then
-    local sumneko_lua_opts = require("config_plugins.lsp.server_config.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
-  end
-
-  if server.name == "pyright" then
+  ["pyright"] = function ()
     local pyright_opts = require("config_plugins.lsp.server_config.pyright")
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-  end
+    lspconfig['pyright'].setup {
+      pyright_opts
+    }
+  end,
 
-  if server.name == "clangd" then
+  ["clangd"] = function ()
     local clangd_opts = require("config_plugins.lsp.server_config.clangd")
-    opts = vim.tbl_deep_extend("force", clangd_opts, opts)
-  end
+    lspconfig["clangd"].setup {
+      clangd_opts
+    }
+  end,
 
-  if server.name == "fortls" then
-    local fortls_opts = require("config_plugins.lsp.server_config.fortls")
-    opts = vim.tbl_deep_extend("force", fortls_opts, opts)
-  end
+  ["sumneko_lua"] = function ()
+    local sumneko_lua_opts = require("config_plugins.lsp.server_config.sumneko_lua")
+    lspconfig["sumneko_lua"].setup {
+      sumneko_lua_opts
+    }
+  end,
 
-  if server.name == "texlab" then
+  ["texlab"] = function ()
     local texlab_opts = require("config_plugins.lsp.server_config.texlab")
-    opts = vim.tbl_deep_extend("force", texlab_opts, opts)
-  end
+    lspconfig["sumneko_lua"].setup {
+      texlab_opts
+    }
+  end,
+})
 
-  if server.name == "ltex" then
-    local ltex_opts = require("config_plugins.lsp.server_config.ltex")
-    opts = vim.tbl_deep_extend("force", ltex_opts, opts)
-  end
-
-  if server.name == "cmake" then
-    local cmake_opts = require("config_plugins.lsp.server_config.cmake")
-    opts = vim.tbl_deep_extend("force", cmake_opts, opts)
-  end
-
-  if server.name == "tsserver" then
-    local tsserver_opts = require("config_plugins.lsp.server_config.tsserver")
-    opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
-  end
-
-  lspconfig[server.name].setup(opts)
-end
+-- for _, server in ipairs(lsp_installer.get_installed_servers()) do
+--   lspconfig[server.name].setup{
+--     capabilities = capabilities,
+--   }
+-- end
+--
+-- for _, server in ipairs(lsp_installer.get_installed_servers()) do
+--   opts = {
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     capabilities = capabilities,
+--   }
+--   
+--   if server.name == "jsonls" then
+--     local jsonls_opts = require("config_plugins.lsp.server_config.jsonls")
+--     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+--   end
+--
+--   if server.name == "yamlls" then
+--     local yamlls_opts = require("config_plugins.lsp.server_config.yamlls")
+--     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+--   end
+--
+--   if server.name == "fortls" then
+--     local fortls_opts = require("config_plugins.lsp.server_config.fortls")
+--     opts = vim.tbl_deep_extend("force", fortls_opts, opts)
+--   end
+--
+--   lspconfig[server.name].setup(opts)
+-- end
 
 
 -- local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
