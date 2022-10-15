@@ -17,8 +17,6 @@ font:
     family: Hack Nerd Font
     style: Bold Italic
 
-  use_thin_strokes: true
-
   size: 11.0
 
   offset:

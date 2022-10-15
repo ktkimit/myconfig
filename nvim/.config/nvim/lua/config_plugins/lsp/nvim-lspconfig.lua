@@ -104,7 +104,8 @@ local lsp_flags = {
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+-- capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 local status_mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not status_mason_lspconfig_ok then
@@ -114,41 +115,39 @@ end
 
 mason_lspconfig.setup({})
 
+local opts = {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
 mason_lspconfig.setup_handlers({
   function (server_name) -- default handler (optional)
-    lspconfig[server_name].setup {
-      on_attach = on_attach,
-      flags = lsp_flags,
-      capabilities = capabilities,
-    }
+    lspconfig[server_name].setup(opts)
   end,
 
   ["pyright"] = function ()
     local pyright_opts = require("config_plugins.lsp.server_config.pyright")
-    lspconfig['pyright'].setup {
-      pyright_opts
-    }
+    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+    lspconfig['pyright'].setup(opts)
   end,
 
   ["clangd"] = function ()
     local clangd_opts = require("config_plugins.lsp.server_config.clangd")
-    lspconfig["clangd"].setup {
-      clangd_opts
-    }
+    opts = vim.tbl_deep_extend("force", clangd_opts, opts)
+    lspconfig["clangd"].setup(opts)
   end,
 
   ["sumneko_lua"] = function ()
     local sumneko_lua_opts = require("config_plugins.lsp.server_config.sumneko_lua")
-    lspconfig["sumneko_lua"].setup {
-      sumneko_lua_opts
-    }
+    opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
+    lspconfig["sumneko_lua"].setup(opts)
   end,
 
   ["texlab"] = function ()
     local texlab_opts = require("config_plugins.lsp.server_config.texlab")
-    lspconfig["sumneko_lua"].setup {
-      texlab_opts
-    }
+    opts = vim.tbl_deep_extend("force", texlab_opts, opts)
+    lspconfig["sumneko_lua"].setup(opts)
   end,
 })
 

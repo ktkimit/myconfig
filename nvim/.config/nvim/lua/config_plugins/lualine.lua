@@ -31,5 +31,8 @@ lualine.setup {
     lualine_z = {}
   },
   tabline = {},
+  -- winbar = {
+  --   lualine_c = { require('nvim-navic').get_location, cond = require('nvim-navic').is_available},
+  -- },
   extensions = {'nvim-tree', 'quickfix'}
 }
