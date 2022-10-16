@@ -117,28 +117,34 @@ return packer.startup(function(use)
       require("config_plugins.colorizer")
     end
   }
-  
-  -- use windwp/nvim-spectre
+
+  -- Search panel
+  use {
+    'windwp/nvim-spectre',
+    config = function()
+      require("config_plugins.nvim-spectre")
+    end
+  }
 
   -- better quickfix window
   use {'kevinhwang91/nvim-bqf', ft = 'qf'}
 
   -- -- File marks and navigate
-  -- use {
-  --   "ThePrimeagen/harpoon",
-  --   config = function()
-  --     require("config_plugins.harpoon")
-  --   end
-  -- }
+  use {
+    "ThePrimeagen/harpoon",
+    config = function()
+      require("config_plugins.harpoon")
+    end
+  }
 
   -- Markdown preview
   use{
-    "iamcco/markdown-preview.nvim", 
-    run = "cd app && npm install", 
-    setup = function() 
-      vim.g.mkdp_filetypes = { "markdown" } 
-    end, 
-    ft = { "markdown" }, 
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   }
 
   -- A simple statusline/winbar component
@@ -213,7 +219,6 @@ return packer.startup(function(use)
     end
   }
 
-
   -- Autocompletion
   use {
     'hrsh7th/nvim-cmp',
@@ -273,9 +278,9 @@ return packer.startup(function(use)
       require('config_plugins.dap')
     end
   }
-  use { 
-    "rcarriga/nvim-dap-ui", 
-    requires = {"mfussenegger/nvim-dap"}, 
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = {"mfussenegger/nvim-dap"},
   }
 
   -- Git
@@ -325,11 +330,51 @@ return packer.startup(function(use)
     end
   }
 
+  use {
+    'cappyzawa/trim.nvim',
+    config = function()
+      require('trim').setup({
+        -- if you want to ignore markdown file.
+        -- you can specify filetypes.
+        -- disable = {"markdown"},
+
+        -- if you want to ignore space of top
+        patterns = {
+          [[%s/\s\+$//e]],           -- remove unwanted spaces
+          [[%s/\($\n\s*\)\+\%$//]],  -- trim last line
+          [[%s/\%^\n\+//]],          -- trim first line
+          -- [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
+        },
+      })
+    end
+  }
+
+  -- Goto preview
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup{
+        default_mappings = true,
+      }
+    end
+  }
+
+  use {"ellisonleao/glow.nvim"}
+
+  use {
+    'jbyuki/nabla.nvim',
+    config = function()
+      vim.api.nvim_set_keymap('n', '<Leader>p', ':lua require("nabla").popup()<CR>', { noremap = true, silent = true })
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
+
+
 
 
   -- use {"is0n/jaq-nvim"}
@@ -364,13 +409,4 @@ return packer.startup(function(use)
   --   end
   -- }
   --
-  -- -- Goto preview
-  -- use {
-  --   'rmagatti/goto-preview',
-  --   config = function()
-  --     require('goto-preview').setup{
-  --       default_mappings = true,
-  --     }
-  --   end
-  -- }
 end)

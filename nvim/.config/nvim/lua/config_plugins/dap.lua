@@ -49,7 +49,7 @@ vim.api.nvim_set_keymap('n', '<Leader>de', ":lua require('dapui').eval()<CR>", {
 -- python
 dap.adapters.python = {
   type = "executable",
-  command = "/home/ktkim/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
+  command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python",
   args = {"-m", "debugpy.adapter"}
 }
 dap.configurations.python = {
@@ -93,11 +93,11 @@ dap.configurations.cpp = {
     end,
     cwd = '${workspaceFolder}',
     stopAtEntry = true,
-    setupCommands = {  
-      { 
+    setupCommands = {
+      {
         text = '-enable-pretty-printing',
         description =  'enable pretty printing',
-        ignoreFailures = false 
+        ignoreFailures = false
       },
     },
   },
