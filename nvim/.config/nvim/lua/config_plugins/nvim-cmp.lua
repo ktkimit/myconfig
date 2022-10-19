@@ -77,7 +77,7 @@ cmp.setup {
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }, 
+    { name = 'luasnip' },
   }, {
       { name = 'buffer' },
       { name = 'path'},
@@ -90,7 +90,7 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), 
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -137,7 +137,7 @@ cmp.setup.cmdline(':', {
   }, {
       { name = 'cmdline' },
       { name = 'cmdline_history' },
-    } 
+    }
   )
 })
 
@@ -150,7 +150,7 @@ cmp_dictionary.setup({
   first_case_insensitive = true,
   document = true,
   document_command = "wn %s -over",
-  async = true, 
+  async = true,
   capacity = 5,
   debug = false,
 })

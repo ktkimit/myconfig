@@ -24,12 +24,22 @@ local sources = {
   diagnostics.flake8,
   diagnostics.pydocstyle,
   formatting.black,
+
   -- tex, markdown
   code_actions.proselint,
-  diagnostics.proselint
+  diagnostics.proselint,
 }
 
 null_ls.setup({
+  -- debug = true,
   diagnostics_format = "[#{c}] #{m} (#{s})",
   sources = sources,
 })
+
+-- TODO: this is a temporary solution.
+-- Use internal formatting for bindings like gq.
+ vim.api.nvim_create_autocmd('LspAttach', {
+   callback = function(args)
+     vim.bo[args.buf].formatexpr = nil
+   end,
+ })

@@ -163,7 +163,7 @@ mason_lspconfig.setup_handlers({
 --     flags = lsp_flags,
 --     capabilities = capabilities,
 --   }
---   
+--
 --   if server.name == "jsonls" then
 --     local jsonls_opts = require("config_plugins.lsp.server_config.jsonls")
 --     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
