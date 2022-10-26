@@ -20,6 +20,9 @@ local completion = null_ls.builtins.completion
 
 -- register any number of sources simultaneously
 local sources = {
+  -- cpp
+  diagnostics.cppcheck,
+
   -- python
   diagnostics.flake8,
   diagnostics.pydocstyle,
