@@ -260,6 +260,7 @@ return packer.startup(function(use)
     end
   }
   use "nvim-treesitter/nvim-treesitter-refactor"
+  use 'nvim-treesitter/nvim-treesitter-context'
 
    -- Telescope
   use {
@@ -353,9 +354,9 @@ return packer.startup(function(use)
   use {
     'rmagatti/goto-preview',
     config = function()
-      require('goto-preview').setup{
+      require('goto-preview').setup({
         default_mappings = true,
-      }
+      })
     end
   }
 
@@ -365,6 +366,14 @@ return packer.startup(function(use)
     'jbyuki/nabla.nvim',
     config = function()
       vim.api.nvim_set_keymap('n', '<Leader>p', ':lua require("nabla").popup()<CR>', { noremap = true, silent = true })
+    end
+  }
+
+  -- Taglist like
+  use {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require("symbols-outline").setup()
     end
   }
 

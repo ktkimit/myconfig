@@ -51,48 +51,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
-  -- Show line diagnostics automatically in hover window
-  -- vim.api.nvim_create_autocmd("CursorHold", {
-  --   buffer = bufnr,
-  --   callback = function()
-  --     local opts = {
-  --       focusable = false,
-  --       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-  --       -- border = 'rounded',
-  --       source = 'always',
-  --       -- prefix = ' ',
-  --       scope = 'cursor',
-  --     }
-  --     vim.diagnostic.open_float(nil, opts)
-  --   end
-  -- })
-
-  -- -- Highlight symbol under cursor
-  -- -- vim.cmd [[
-  -- --   hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-  -- --   hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-  -- --   hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-  -- -- ]]
-  -- if client.resolved_capabilities.document_highlight then
-  --   vim.api.nvim_create_augroup('lsp_document_highlight', {
-  --     clear = false
-  --   })
-  --   vim.api.nvim_clear_autocmds({
-  --     buffer = bufnr,
-  --     group = 'lsp_document_highlight',
-  --   })
-  --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-  --     group = 'lsp_document_highlight',
-  --     buffer = bufnr,
-  --     callback = vim.lsp.buf.document_highlight,
-  --   })
-  --   vim.api.nvim_create_autocmd('CursorMoved', {
-  --     group = 'lsp_document_highlight',
-  --     buffer = bufnr,
-  --     callback = vim.lsp.buf.clear_references,
-  --   })
-  -- end
-
   attach_navic(client, bufnr)
 end
 
@@ -151,45 +109,10 @@ mason_lspconfig.setup_handlers({
     opts = vim.tbl_deep_extend("force", texlab_opts, opts)
     lspconfig["sumneko_lua"].setup(opts)
   end,
+
+  ["tsserver"] = function ()
+    local tsserver_opts = require("config_plugins.lsp.server_config.tsserver")
+    opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+    lspconfig["sumneko_lua"].setup(opts)
+  end,
 })
-
--- for _, server in ipairs(lsp_installer.get_installed_servers()) do
---   lspconfig[server.name].setup{
-  --capabilities = capabilities, --
--- }
--- end
---
--- for _, server in ipairs(lsp_installer.get_installed_servers()) do
---   opts = {
---     on_attach = on_attach,
---     flags = lsp_flags,
---     capabilities = capabilities,
---   }
---
---   if server.name == "jsonls" then
---     local jsonls_opts = require("config_plugins.lsp.server_config.jsonls")
---     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
---   end
---
---   if server.name == "yamlls" then
---     local yamlls_opts = require("config_plugins.lsp.server_config.yamlls")
---     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
---   end
---
---   if server.name == "fortls" then
---     local fortls_opts = require("config_plugins.lsp.server_config.fortls")
---     opts = vim.tbl_deep_extend("force", fortls_opts, opts)
---   end
---
---   lspconfig[server.name].setup(opts)
--- end
-
-
--- local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
--- if not lsp_installer_ok then
---   return
--- end
---
--- lsp_installer.setup{
-  --automatic_installation = true, --
--- }

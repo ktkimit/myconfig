@@ -31,6 +31,9 @@ local sources = {
   -- tex, markdown
   code_actions.proselint,
   diagnostics.proselint,
+
+  -- html, javascript
+  formatting.prettier,
 }
 
 null_ls.setup({

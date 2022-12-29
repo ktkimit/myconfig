@@ -23,6 +23,7 @@ vim.o.timeoutlen = 500
 vim.o.signcolumn = 'yes'
 vim.o.spell = false
 vim.o.spelllang = 'en_us'
+vim.o.cino = 'g0 N-s'
 
 -- set global variables
 vim.g.tex_flavor = 'latex'
