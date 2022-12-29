@@ -113,6 +113,6 @@ mason_lspconfig.setup_handlers({
   ["tsserver"] = function ()
     local tsserver_opts = require("config_plugins.lsp.server_config.tsserver")
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
-    lspconfig["sumneko_lua"].setup(opts)
+    lspconfig["tsserver"].setup(opts)
   end,
 })
