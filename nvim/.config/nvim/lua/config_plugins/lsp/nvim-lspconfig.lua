@@ -17,10 +17,19 @@ local function attach_navic(client, bufnr)
   navic.attach(client, bufnr)
 end
 
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      -- apply whatever logic you want (in this example, we'll only use null-ls)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  })
+end
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -34,7 +43,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -50,6 +59,16 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
+  end
 
   attach_navic(client, bufnr)
 end
@@ -82,35 +101,35 @@ local opts = {
 }
 
 mason_lspconfig.setup_handlers({
-  function (server_name) -- default handler (optional)
+  function(server_name) -- default handler (optional)
     lspconfig[server_name].setup(opts)
   end,
 
-  ["pyright"] = function ()
+  ["pyright"] = function()
     local pyright_opts = require("config_plugins.lsp.server_config.pyright")
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     lspconfig['pyright'].setup(opts)
   end,
 
-  ["clangd"] = function ()
+  ["clangd"] = function()
     local clangd_opts = require("config_plugins.lsp.server_config.clangd")
     opts = vim.tbl_deep_extend("force", clangd_opts, opts)
     lspconfig["clangd"].setup(opts)
   end,
 
-  ["sumneko_lua"] = function ()
+  ["sumneko_lua"] = function()
     local sumneko_lua_opts = require("config_plugins.lsp.server_config.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
     lspconfig["sumneko_lua"].setup(opts)
   end,
 
-  ["texlab"] = function ()
+  ["texlab"] = function()
     local texlab_opts = require("config_plugins.lsp.server_config.texlab")
     opts = vim.tbl_deep_extend("force", texlab_opts, opts)
     lspconfig["sumneko_lua"].setup(opts)
   end,
 
-  ["tsserver"] = function ()
+  ["tsserver"] = function()
     local tsserver_opts = require("config_plugins.lsp.server_config.tsserver")
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
     lspconfig["tsserver"].setup(opts)

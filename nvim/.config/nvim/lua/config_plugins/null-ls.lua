@@ -33,7 +33,7 @@ local sources = {
   diagnostics.proselint,
 
   -- html, javascript
-  formatting.prettier,
+  formatting.prettierd,
 }
 
 null_ls.setup({
