@@ -6,9 +6,6 @@ end
 require'nvim-tree'.setup {
   update_cwd = true,
   respect_buf_cwd = true,
-  ignore_ft_on_setup = {
-    "alpha",
-  },
   update_focused_file = {
     enable = true,
     update_cwd = true
