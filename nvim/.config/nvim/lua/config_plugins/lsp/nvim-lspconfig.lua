@@ -134,4 +134,10 @@ mason_lspconfig.setup_handlers({
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
     lspconfig["tsserver"].setup(opts)
   end,
+
+  ["cmake"] = function()
+    local cmake_opts = require("config_plugins.lsp.server_config.cmake")
+    opts = vim.tbl_deep_extend("force", cmake_opts, opts)
+    lspconfig["cmake"].setup(opts)
+  end,
 })
