@@ -117,16 +117,16 @@ mason_lspconfig.setup_handlers({
     lspconfig["clangd"].setup(opts)
   end,
 
-  ["sumneko_lua"] = function()
-    local sumneko_lua_opts = require("config_plugins.lsp.server_config.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
-    lspconfig["sumneko_lua"].setup(opts)
+  ["lua_ls"] = function()
+    local lua_ls_opts = require("config_plugins.lsp.server_config.lua_ls")
+    opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
+    lspconfig["lua_ls"].setup(opts)
   end,
 
   ["texlab"] = function()
     local texlab_opts = require("config_plugins.lsp.server_config.texlab")
     opts = vim.tbl_deep_extend("force", texlab_opts, opts)
-    lspconfig["sumneko_lua"].setup(opts)
+    lspconfig["texlab"].setup(opts)
   end,
 
   ["tsserver"] = function()
