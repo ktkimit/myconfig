@@ -295,6 +295,11 @@ return packer.startup(function(use)
     end
   }
 
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+
   -- null-ls
   use {
     'jose-elias-alvarez/null-ls.nvim',
