@@ -1,11 +1,11 @@
 -- plugins
-require('plugins')
+-- require('plugins')
 
 -- settings
-require('settings')
+--require('settings')
 
 -- LSP
-require('config_plugins.lsp')
+--require('config_plugins.lsp')
 
 -- keymappings
-require('keymappings')
+--require('keymappings')
