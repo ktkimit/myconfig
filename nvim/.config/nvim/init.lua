@@ -1,8 +1,8 @@
 -- plugins
--- require('plugins')
+require('lazy-configure')
 
 -- settings
---require('settings')
+-- require('settings')
 
 -- LSP
 --require('config_plugins.lsp')

@@ -32,4 +32,4 @@ vim.g.tex_flavor = 'latex'
 vim.cmd[[hi CursorLine guibg=#000000]]
 
 -- set up winbar
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+-- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
