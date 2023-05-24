@@ -24,9 +24,8 @@ function M.config()
 		dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 	}
 	local function footer()
-		local total_plugins = #vim.tbl_keys(packer_plugins)
 		local datetime = os.date("%m-%d-%Y %H:%M:%S")
-		return total_plugins .. " plugins " .. datetime
+		return datetime
 	end
 	dashboard.section.footer.val = footer()
 
