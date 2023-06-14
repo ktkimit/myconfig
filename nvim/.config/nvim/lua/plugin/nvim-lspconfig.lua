@@ -60,21 +60,21 @@ function M.config()
     lsp_keymaps(bufnr)
   end
 
---  for _, server in pairs(require("utils").servers) do
---    Opts = {
---      on_attach = on_attach,
---      capabilities = capabilities,
---    }
---
---    server = vim.split(server, "@")[1]
---
---    local require_ok, conf_opts = pcall(require, "settings." .. server)
---    if require_ok then
---      Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
---    end
---
---    lspconfig[server].setup(Opts)
---  end
+  for _, server in pairs(require("lsp").servers) do
+    Opts = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+
+    server = vim.split(server, "@")[1]
+
+    local require_ok, conf_opts = pcall(require, "lsp." .. server)
+    if require_ok then
+      Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
+    end
+
+    lspconfig[server].setup(Opts)
+  end
 
   local signs = {
     { name = "DiagnosticSignError", text = "" },
