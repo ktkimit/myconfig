@@ -21,7 +21,10 @@ local settings = {
 
 function M.config()
   require("mason").setup(settings)
-  require("mason-lspconfig").setup()
+  require("mason-lspconfig").setup{
+    ensure_installed = require("lsp").servers,
+    automatic_installation = true,
+  }
 end
 
 return M
