@@ -23,7 +23,7 @@ local settings = {
 
 function M.config()
   require("oil").setup(settings)
-  vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+  vim.keymap.set("n", "<Leader>-", require("oil").toggle_float, { desc = "Toggle oil" })
 end
 
 return M
