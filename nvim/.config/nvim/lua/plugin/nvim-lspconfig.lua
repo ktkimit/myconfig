@@ -8,6 +8,15 @@ local M = {
   },
 }
 
+local function attach_navic(client, bufnr)
+  vim.g.navic_silence = true
+  local status_ok, navic = pcall(require, "nvim-navic")
+  if not status_ok then
+    return
+  end
+  navic.attach(client, bufnr)
+end
+
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 function M.config()
   -- Global mappings.
@@ -58,6 +67,10 @@ function M.config()
     end
 
     lsp_keymaps(bufnr)
+
+    if client.server_capabilities.documentSymbolProvider then
+      attach_navic(client, bufnr)
+    end
   end
 
   for _, server in pairs(require("lsp").servers) do
