@@ -17,6 +17,14 @@ local function attach_navic(client, bufnr)
   navic.attach(client, bufnr)
 end
 
+local function attach_navbuddy(client, bufnr)
+  local status_ok, navbuddy = pcall(require, "nvim-navbuddy")
+  if not status_ok then
+    return
+  end
+  navbuddy.attach(client, bufnr)
+end
+
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 function M.config()
   -- Global mappings.
@@ -67,6 +75,8 @@ function M.config()
     end
 
     lsp_keymaps(bufnr)
+
+    attach_navbuddy(client, bufnr)
 
     if client.server_capabilities.documentSymbolProvider then
       attach_navic(client, bufnr)
