@@ -26,6 +26,9 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
+    {
+      "danymat/neogen",
+    },
   },
   event = {
     "InsertEnter",
@@ -36,6 +39,8 @@ local M = {
 function M.config()
   local cmp = require "cmp"
   local luasnip = require "luasnip"
+  local neogen = require('neogen')
+
   require("luasnip/loaders/from_vscode").lazy_load()
 
   local check_backspace = function()
@@ -93,6 +98,8 @@ function M.config()
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
+        elseif neogen.jumpable() then
+          neogen.jump_next()
         elseif luasnip.expandable() then
           luasnip.expand()
         elseif luasnip.expand_or_jumpable() then
@@ -109,6 +116,8 @@ function M.config()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
+        elseif neogen.jumpable(true) then
+          neogen.jump_prev()
         elseif luasnip.jumpable(-1) then
           luasnip.jump(-1)
         else
