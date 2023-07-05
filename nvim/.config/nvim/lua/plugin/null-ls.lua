@@ -20,8 +20,12 @@ function M.config()
     formatting.black,
     diagnostics.ruff,
 
+    -- prose
+    diagnostics.vale,
+
     -- cpp
     -- diagnostics.cppcheck,
+
   }
 
   null_ls.setup {
