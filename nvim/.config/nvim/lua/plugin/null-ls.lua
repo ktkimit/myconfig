@@ -25,6 +25,7 @@ function M.config()
 
     -- cpp
     -- diagnostics.cppcheck,
+    formatting.clang_format,
 
   }
 
