@@ -9,6 +9,14 @@ M.servers = {
   "yamlls",
   "marksman",
   -- "grammarly"
+  
+  -- not exactly lsp
+  "cpptools",
+  "debugpy",
+  "ruff",
+  "vale",
+  "black",
+  "clang-format"
 }
 
 return M
