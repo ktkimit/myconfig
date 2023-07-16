@@ -16,6 +16,14 @@ local settings = {
       package_pending = "➜",
       package_uninstalled = "✗"
     }
+  },
+  ensure_installed = {
+    "cpptools",
+    "debugpy",
+    "ruff",
+    "vale",
+    "black",
+    "clang-format"
   }
 }
 
@@ -25,6 +33,10 @@ function M.config()
     ensure_installed = require("lsp").servers,
     automatic_installation = true,
   }
+
+  vim.api.nvim_create_user_command("MasonInstallAll", function()
+    vim.cmd("MasonInstall " .. table.concat(settings.ensure_installed, " "))
+  end, {})
 end
 
 return M
