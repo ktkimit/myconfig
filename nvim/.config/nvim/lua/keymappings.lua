@@ -8,7 +8,7 @@ vim.api.nvim_set_keymap('i', '<C-j>', '<ESC><C-w>j', { silent = true })
 vim.api.nvim_set_keymap('i', '<C-k>', '<ESC><C-w>k', { silent = true })
 vim.api.nvim_set_keymap('i', '<C-l>', '<ESC><C-w>l', { silent = true })
 
-vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { silent = true })
+-- vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { silent = true })
 vim.api.nvim_set_keymap('t', '<C-h>', '<C-\\><C-n><C-w>h', { silent = true })
 vim.api.nvim_set_keymap('t', '<C-j>', '<C-\\><C-n><C-w>j', { silent = true })
 vim.api.nvim_set_keymap('t', '<C-k>', '<C-\\><C-n><C-w>k', { silent = true })
