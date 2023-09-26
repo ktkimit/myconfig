@@ -15,7 +15,12 @@ unsetopt BEEP
 # History
 HISTSIZE=1000000
 SAVEHIST=1000000
+# HISTORY_IGNORE="(cd(|..)|l[ls]|cd|clear|fg|exit|pwd|( |\t)*|history|nvim)" # not working
 HISTFILE=$XDG_CACHE_HOME/zsh/history
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 setopt SHARE_HISTORY
 
 # Basic auto/tab completion:
