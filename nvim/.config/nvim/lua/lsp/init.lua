@@ -8,6 +8,7 @@ M.servers = {
   "jsonls",
   "yamlls",
   "marksman",
+  "tsserver",
   -- "grammarly"
 }
 
