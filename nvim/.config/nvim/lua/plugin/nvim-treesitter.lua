@@ -31,10 +31,6 @@ function M.config()
     },
     indent = { enable = true,},
 
-    context_commentstring = {
-      enable = true,
-    },
-
     refactor = {
       highlight_definitions = {
         enable = true,
@@ -50,6 +46,8 @@ function M.config()
       },
     },
   }
+
+  require('nvim-treesitter.configs').setup {}
 end
 
 return M

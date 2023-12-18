@@ -1,8 +1,12 @@
--- plugins
-require('lazy-configure')
+if vim.g.vscode then
+  -- VSCode extension
+else
+  -- plugins
+  require('lazy-configure')
 
--- settings
-require('settings')
+  -- settings
+  require('settings')
 
--- keymappings
-require('keymappings')
+  -- keymappings
+  require('keymappings')
+end
