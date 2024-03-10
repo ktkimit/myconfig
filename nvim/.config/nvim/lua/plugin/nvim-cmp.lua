@@ -26,6 +26,7 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
+    {"kdheepak/cmp-latex-symbols"},
     {
       "danymat/neogen",
     },
@@ -149,6 +150,11 @@ function M.config()
       { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
+      { name = "latex_symbols",
+        option = {
+          strategy = 2,
+        },
+      }
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
