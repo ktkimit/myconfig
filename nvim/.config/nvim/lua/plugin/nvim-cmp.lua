@@ -30,6 +30,7 @@ local M = {
     {
       "danymat/neogen",
     },
+    {"jmbuhr/otter.nvim"},
   },
   event = {
     "InsertEnter",
@@ -154,7 +155,8 @@ function M.config()
         option = {
           strategy = 2,
         },
-      }
+      },
+      { name = "otter" },
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,

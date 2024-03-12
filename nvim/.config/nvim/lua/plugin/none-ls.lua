@@ -18,10 +18,10 @@ function M.config()
   local sources = {
     -- python
     formatting.black,
-    diagnostics.ruff,
 
     -- prose
     diagnostics.vale,
+    diagnostics.pylint,
 
     -- cpp
     -- diagnostics.cppcheck,
