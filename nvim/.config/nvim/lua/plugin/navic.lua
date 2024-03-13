@@ -9,6 +9,9 @@ function M.config()
   navic.setup{
     highlight = true,
     click = true,
+    lsp = {
+      auto_attach = true,
+    },
   }
   vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 end
