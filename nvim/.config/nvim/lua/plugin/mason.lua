@@ -18,12 +18,15 @@ local settings = {
     }
   },
   ensure_installed = {
+    "clangd",
     "cpptools",
-    "debugpy",
-    "ruff",
-    "vale",
+    "clang-format",
+    "pyright",
+    "pylint",
     "black",
-    "clang-format"
+    "debugpy",
+    "vale",
+    "bash-language-server"
   }
 }
 
