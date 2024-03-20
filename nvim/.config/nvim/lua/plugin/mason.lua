@@ -22,7 +22,7 @@ local settings = {
     "cpptools",
     "clang-format",
     "pyright",
-    "pylint",
+    "mypy",
     "black",
     "debugpy",
     "vale",
