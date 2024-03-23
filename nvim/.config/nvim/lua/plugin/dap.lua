@@ -25,7 +25,21 @@ function M.config()
   vim.api.nvim_set_keymap('n', '<Leader>dc', ":lua require'dap'.run_to_cursor()<CR>", {noremap=true, silent=true})
   vim.api.nvim_set_keymap('n', '<Leader>dt', ":lua require'dap'.terminate()<CR>", {noremap=true, silent=true})
   vim.api.nvim_set_keymap('n', '<Leader>dq', ":lua require'dap'.terminate()<CR>:lua require'dap'.repl.close()<CR>", {noremap=true, silent=true})
-  vim.api.nvim_set_keymap('n', '<Leader>dh', ":lua require('dap.ui.widgets').hover()<CR>", {noremap=true, silent=true})
+
+  vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+    require('dap.ui.widgets').hover()
+  end)
+  vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+    require('dap.ui.widgets').preview()
+  end)
+  vim.keymap.set('n', '<Leader>df', function()
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.frames)
+  end)
+  vim.keymap.set('n', '<Leader>ds', function()
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.scopes)
+  end)
 
   vim.api.nvim_exec([[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]], false)
 
@@ -34,13 +48,16 @@ function M.config()
     return
   end
 
-  dap.listeners.after.event_initialized["dapui_config"] = function()
+  dap.listeners.before.attach.dapui_config = function()
     dapui.open()
   end
-  dap.listeners.before.event_terminated["dapui_config"] = function()
+  dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+  end
+  dap.listeners.before.event_terminated.dapui_config = function()
     dapui.close()
   end
-  dap.listeners.before.event_exited["dapui_config"] = function()
+  dap.listeners.before.event_exited.dapui_config = function()
     dapui.close()
   end
 
