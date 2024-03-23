@@ -14,14 +14,16 @@ local M = {
       "nvim-tree/nvim-web-devicons",
       event = "VeryLazy",
     },
+    {"LiadOz/nvim-dap-repl-highlights"}
   },
 }
 
 function M.config()
   local configs = require "nvim-treesitter.configs"
+  require('nvim-dap-repl-highlights').setup()
 
   configs.setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp" },
+    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", 'dap_repl' },
     ignore_install = { "" },
     sync_install = false,
 

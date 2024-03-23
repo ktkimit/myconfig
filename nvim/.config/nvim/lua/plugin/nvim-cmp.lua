@@ -27,6 +27,7 @@ local M = {
       "hrsh7th/cmp-nvim-lua",
     },
     {"kdheepak/cmp-latex-symbols"},
+    {"rcarriga/cmp-dap"},
     {
       "danymat/neogen",
     },
@@ -169,7 +170,17 @@ function M.config()
     experimental = {
       ghost_text = true,
     },
+    enabled = function()
+      return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+        or require("cmp_dap").is_dap_buffer()
+    end
   }
+
+  cmp.setup.filetype({"dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = {
+      { name = "dap" },
+    },
+  })
 end
 
 return M
