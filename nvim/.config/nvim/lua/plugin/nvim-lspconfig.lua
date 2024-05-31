@@ -5,14 +5,6 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lsp",
     },
-    {
-      "SmiteshP/nvim-navbuddy",
-      dependencies = {
-        "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim"
-      },
-      opts = { lsp = { auto_attach = true } }
-    }
   },
 }
 
@@ -23,14 +15,6 @@ local function attach_navic(client, bufnr)
     return
   end
   navic.attach(client, bufnr)
-end
-
-local function attach_navbuddy(client, bufnr)
-  local status_ok, navbuddy = pcall(require, "nvim-navbuddy")
-  if not status_ok then
-    return
-  end
-  navbuddy.attach(client, bufnr)
 end
 
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
@@ -115,8 +99,6 @@ function M.config()
     end
 
     lsp_keymaps(bufnr)
-
-    attach_navbuddy(client, bufnr)
 
     if client.server_capabilities.documentSymbolProvider then
       attach_navic(client, bufnr)
