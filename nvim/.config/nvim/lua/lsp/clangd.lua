@@ -8,7 +8,8 @@ return {
   },
   settings = {
     on_attach = {
-      vim.keymap.set('n', '<space>a', "<cmd>ClangdSwitchSourceHeader<CR>")
+      vim.keymap.set('n', '<space>a', "<cmd>ClangdSwitchSourceHeader<CR>"),
+      vim.lsp.inlay_hint.enable(true)
     }
   }
 }
