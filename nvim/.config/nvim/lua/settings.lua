@@ -24,6 +24,8 @@ vim.o.signcolumn = 'yes'
 vim.o.spell = true
 vim.o.spelllang = 'en_us'
 vim.o.cino = 'g0 N-s'
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- set global variables
 vim.g.tex_flavor = 'latex'
