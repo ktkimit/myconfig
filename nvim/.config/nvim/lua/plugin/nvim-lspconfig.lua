@@ -8,16 +8,8 @@ local M = {
   },
 }
 
-local function attach_navic(client, bufnr)
-  vim.g.navic_silence = true
-  local status_ok, navic = pcall(require, "nvim-navic")
-  if not status_ok then
-    return
-  end
-  navic.attach(client, bufnr)
-end
-
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
+
 function M.config()
   -- Global mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -57,57 +49,14 @@ function M.config()
     end,
   })
 
-  -- TODO: Remove below function and related lines.
-  local function lsp_keymaps(bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
-  end
+  local lspconfig = require "lspconfig"
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
-  local lspconfig = require "lspconfig"
-  local on_attach = function(client, bufnr)
-    if client.name == "tsserver" then
-      client.server_capabilities.documentFormattingProvider = false
-    end
-
-    if client.name == "sumneko_lua" then
-      client.server_capabilities.documentFormattingProvider = false
-    end
-
-    lsp_keymaps(bufnr)
-
-    if client.server_capabilities.documentSymbolProvider then
-      attach_navic(client, bufnr)
-    end
-  end
-
   for _, server in pairs(require("lsp").servers) do
     Opts = {
-      -- on_attach = on_attach,
       capabilities = capabilities,
     }
 
