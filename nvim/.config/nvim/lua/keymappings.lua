@@ -30,5 +30,5 @@ vim.api.nvim_set_keymap('n', '<ESC>', ':noh<CR>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap('n', '<Leader>c', ':cclose<CR>', { silent = true })
 
 -- buffer
-vim.api.nvim_set_keymap('n', '<Leader>br', ':bd<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>br', ':bp|bd#<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>bb', ':b#<CR>', { silent = true })
