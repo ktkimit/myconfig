@@ -44,6 +44,7 @@ zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-fzf"
 zsh_add_file "zsh-lf"
+zsh_add_file "zsh-yazi"
  
 # Load plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
