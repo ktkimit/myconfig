@@ -18,6 +18,7 @@ function M.config()
   local sources = {
     -- python
     formatting.black,
+    formatting.isort,
     diagnostics.mypy.with({
       extra_args = function()
         local virtual = os.getenv("VIRTUAL_ENV") or "/usr"

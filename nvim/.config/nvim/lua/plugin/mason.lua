@@ -24,6 +24,7 @@ local settings = {
     "pyright",
     "mypy",
     "black",
+    "isort",
     "debugpy",
     "vale",
     "bash-language-server"
