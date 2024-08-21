@@ -13,9 +13,13 @@ local M = {
 function M.config()
   require("dapui").setup {}
 
+  vim.keymap.set({'n'}, '<Leader>du', function()
+    require("dapui").toggle()
+  end, {desc="Toggle dapui"})
+
   vim.keymap.set({'n', 'v'}, 'E', function()
     require("dapui").eval()
-  end)
+  end, {desc="Evaluate variable"})
 
 end
 
