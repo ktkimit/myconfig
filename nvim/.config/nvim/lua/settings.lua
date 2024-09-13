@@ -32,3 +32,5 @@ vim.g.tex_flavor = 'latex'
 
 -- set through vim command
 vim.cmd[[hi CursorLine guibg=#000000]]
+
+vim.lsp.set_log_level("off")
