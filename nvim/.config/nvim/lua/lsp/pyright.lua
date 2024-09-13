@@ -1,4 +1,4 @@
-return{
+return {
   settings = {
     python = {
       analysis = {
@@ -6,5 +6,9 @@ return{
         diagnosticMode = "workspace",
       },
     },
+    on_attach = {
+      vim.keymap.set('n', '<space>i', "<cmd>PyrightOrganizeImports<CR>", { desc = "Organize imports." }),
+    }
   },
+
 }
