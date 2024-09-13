@@ -37,6 +37,7 @@ function M.config()
   vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Telescope buffers" })
   vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope help_tags" })
   vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "Telescope lsp_references" })
+  vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope oldfiles" })
 
   vim.keymap.set('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
     { desc = "Telescope live_grep" })
