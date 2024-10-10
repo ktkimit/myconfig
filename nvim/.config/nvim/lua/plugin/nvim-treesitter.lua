@@ -11,6 +11,10 @@ local M = {
       event = "VeryLazy",
     },
     {
+      "nvim-treesitter/nvim-treesitter-context",
+      event = "LspAttach",
+    },
+    {
       "nvim-tree/nvim-web-devicons",
       event = "VeryLazy",
     },
