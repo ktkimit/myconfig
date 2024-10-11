@@ -33,13 +33,13 @@ function M.config()
 
   local builtin = require('telescope.builtin')
   vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find_files" })
-  -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, {desc = "Telescope live_grep"})
+  vim.keymap.set('n', '<leader>fg', builtin.live_grep, {desc = "Telescope live_grep"})
   vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Telescope buffers" })
   vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope help_tags" })
   vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "Telescope lsp_references" })
   vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope oldfiles" })
 
-  vim.keymap.set('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  vim.keymap.set('n', '<leader>fG', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
     { desc = "Telescope live_grep" })
 end
 
