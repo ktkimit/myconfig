@@ -7,6 +7,16 @@ local M = {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     "nvim-telescope/telescope-live-grep-args.nvim",
     "debugloop/telescope-undo.nvim",
+    {
+      "olimorris/persisted.nvim",
+      lazy = true,
+      config = function()
+        require("persisted").setup({
+          autostart = false,
+          use_git_branch = true
+        })
+      end,
+    },
   },
 }
 
@@ -22,7 +32,7 @@ M.opts = {
       override_file_sorter = true,    -- override the file sorter
       case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
-    }
+    },
   }
 }
 
@@ -32,6 +42,7 @@ function M.config()
   telescope.load_extension('fzf')
   telescope.load_extension("live_grep_args")
   telescope.load_extension("undo")
+  telescope.load_extension("persisted")
 
   local builtin = require('telescope.builtin')
   vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find_files" })
@@ -43,6 +54,7 @@ function M.config()
 
   vim.keymap.set('n', '<leader>fG', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
     { desc = "Telescope live_grep" })
+  vim.keymap.set('n', '<leader>fs', ":Telescope persisted<CR>", { desc = "Telescope persisted" })
 end
 
 return M
