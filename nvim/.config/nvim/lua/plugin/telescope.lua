@@ -7,10 +7,6 @@ local M = {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     "nvim-telescope/telescope-live-grep-args.nvim",
     "debugloop/telescope-undo.nvim",
-    'jonarrien/telescope-cmdline.nvim',
-  },
-  keys = {
-    { '<space>:', '<cmd>Telescope cmdline<cr>', desc = 'Cmdline' }
   },
 }
 
@@ -36,7 +32,6 @@ function M.config()
   telescope.load_extension('fzf')
   telescope.load_extension("live_grep_args")
   telescope.load_extension("undo")
-  telescope.load_extension('cmdline')
 
   local builtin = require('telescope.builtin')
   vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find_files" })
