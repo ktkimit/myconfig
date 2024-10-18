@@ -12,7 +12,11 @@ local M = {
 }
 
 function M.config()
-  require("outline").setup({})
+  require("outline").setup({
+    keymaps = {
+      goto_and_close = '<C-Cr>',
+    }
+  })
 end
 
 return M
