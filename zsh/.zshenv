@@ -8,8 +8,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-# PATH
-export PATH="$HOME/.local/bin:$PATH"
+# PATH # this does not work...
+# export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # Default programs
 export EDITOR="nvim"
