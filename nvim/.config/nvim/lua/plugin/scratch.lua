@@ -9,7 +9,7 @@ local M = {
 function M.config()
   require("scratch").setup({
     file_picker = "telescope",
-    filetypes = { "md" },
+    filetypes = { "md", "txt" },
   })
 end
 
