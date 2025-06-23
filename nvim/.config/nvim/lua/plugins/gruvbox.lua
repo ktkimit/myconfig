@@ -4,15 +4,15 @@ local M = {
   priority = 1000
 }
 
-function M.config()
+function M.opts()
   local status_ok, _ = pcall(vim.cmd.colorscheme, "gruvbox")
   if not status_ok then
     return
   end
 
-  require("gruvbox").setup({
+  return {
     transparent_mode = true,
-  })
+  }
 end
 
 return M
