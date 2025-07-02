@@ -33,6 +33,12 @@ vim.api.nvim_set_keymap('n', '<Leader>c', ':cclose<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>br', ':bp|bd#<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>bb', ':b#<CR>', { silent = true })
 
+-- diagnostic
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
 vim.keymap.set("n", "<Leader>yf", function()
   vim.fn.setreg('+', vim.fn.expand('%:t'))
 end, {desc="Copy file name"})
