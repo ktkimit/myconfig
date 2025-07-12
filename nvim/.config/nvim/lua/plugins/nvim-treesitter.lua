@@ -12,6 +12,7 @@ local M = {
     {
       "nvim-treesitter/nvim-treesitter-context",
       event = "LspAttach",
+      opts = {},
     },
     {
       "nvim-tree/nvim-web-devicons",
