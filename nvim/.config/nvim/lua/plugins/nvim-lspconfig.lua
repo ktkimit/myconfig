@@ -1,7 +1,6 @@
 local M = {
   "neovim/nvim-lspconfig",
 }
-
 function M.config()
   -- Use LspAttach autocommand to only map the following keys
   -- after the language server attaches to the current buffer
@@ -10,6 +9,11 @@ function M.config()
     callback = function(ev)
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+      local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true)
+      end
 
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -54,9 +58,13 @@ function M.config()
     },
   }
 
+  vim.lsp.config('*', {
+    capabilities = capabilities,
+    root_markers = {'.git'}
+  })
+
   for _, server in ipairs(require("lsp").servers) do
     local opts = {
-      capabilities = capabilities,
     }
 
     local require_ok, conf_opts = pcall(require, "lsp." .. server)
