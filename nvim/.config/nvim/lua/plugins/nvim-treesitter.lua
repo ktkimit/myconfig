@@ -18,7 +18,11 @@ local M = {
       "nvim-tree/nvim-web-devicons",
       event = "VeryLazy",
     },
-    { "LiadOz/nvim-dap-repl-highlights" }
+    { "LiadOz/nvim-dap-repl-highlights" },
+    {
+      "Badhi/nvim-treesitter-cpp-tools",
+      opts = {}
+    }
   },
 }
 
