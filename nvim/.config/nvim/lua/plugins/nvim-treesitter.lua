@@ -27,8 +27,9 @@ local M = {
 }
 
 function M.opts()
-  local settings = {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", 'dap_repl' },
+  local configs = require "nvim-treesitter.configs"
+  configs.setup {
+    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", },
     sync_install = false,
     highlight = {
       enable = true,
@@ -49,8 +50,6 @@ function M.opts()
       },
     },
   }
-
-  return settings
 end
 
 return M
