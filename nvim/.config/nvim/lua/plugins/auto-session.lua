@@ -6,7 +6,8 @@ local M = {
   ---@module "auto-session"
   ---@type AutoSession.Config
   opts = {
-    allowed_dirs = { '~/dev/*', '~/devs/*' },
+    auto_create = false,
+    -- allowed_dirs = { '~/dev/*', '~/devs/*' },
     bypass_save_filetypes = { 'alpha', 'dashboard' },
   }
 }
