@@ -8,7 +8,7 @@ local M = {
   },
 
   keys = {
-    { "<Leader>-", "<CMD>Oil<CR>", desc = "Open parent directory" }
+    { "<Leader>-", "<CMD>Oil --float<CR>", desc = "Open parent directory" }
   },
 
   opts = {
