@@ -9,6 +9,7 @@ M.servers = {
   "yamlls",
   "marksman",
   "ts_ls",
+  "cmake",
   -- "grammarly"
 }
 

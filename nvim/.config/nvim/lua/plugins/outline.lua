@@ -7,6 +7,9 @@ local M = {
     { "<space>l", "<cmd>OutlineFocus<CR>", desc = "Toggle outline focus" },
   },
   opts = {
+    keymaps = {
+      goto_and_close = '<C-Cr>'
+    }
   },
 }
 

@@ -5,6 +5,13 @@ local M = {
 
   version = '1.*',
   opts = {
+    keymap = {
+      ["<Tab>"] = { "select_next", "fallback_to_mappings" },
+      ["<S-Tab>"] = { "select_prev", "fallback_to_mappings" },
+      ["<CR>"] = { "select_and_accept", 'fallback' },
+      ['<C-n>'] = { 'snippet_forward', 'fallback' },
+      ['<C-p>'] = { 'snippet_backward', 'fallback' },
+    }
   }
 }
 
