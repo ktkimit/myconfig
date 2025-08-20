@@ -1,6 +1,6 @@
 local M = {
-"obsidian-nvim/obsidian.nvim",
-  version = "*",  -- recommended, use latest release instead of latest commit
+  "obsidian-nvim/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
   -- lazy = true,
   -- ft = "markdown",
   event = "VeryLazy",
@@ -20,7 +20,8 @@ local M = {
     completion = {
       nvim_cmp = false,
       blink = true
-    }
+    },
+    legacy_commands = false
   },
 }
 
