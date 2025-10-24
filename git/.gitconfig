@@ -1,0 +1,17 @@
+[user]
+	name = ktkimit
+	email = qlsn55@gmail.com
+[credential]
+	helper = store
+[init]
+	defaultBranch = main
+[status]
+	showUntrackedFiles = all
+[core]
+  pager = delta
+[delta]
+  ; side-by-side = true
+  navigate = true  # use n and N to move between diff sections
+  line-numbers = true
+[merge]
+  conflictStyle = zdiff3
