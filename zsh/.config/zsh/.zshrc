@@ -55,4 +55,4 @@ zsh_add_plugin "zsh-users/zsh-completions"
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # ENV
-export GNUPLOT_LIB="${HOME}.config/gnuplot/scripts"
+export GNUPLOT_LIB="${HOME}/.config/gnuplot/scripts"
