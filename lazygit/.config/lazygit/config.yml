@@ -3,11 +3,14 @@ gui:
     activeBorderColor:
       - blue
       - bold
-  showIcons: true
+  nerdFontsVersion: "3"
 
 git:
   log:
     showGraph: 'always'
+  paging:
+    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    colorArg: always
 
 os:
   editCommand: 'nvim'
