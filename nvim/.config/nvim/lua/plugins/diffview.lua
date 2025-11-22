@@ -1,5 +1,8 @@
 local M = {
   "sindrets/diffview.nvim",
+  keys = {
+    {"<leader>dc", "<cmd>DiffviewClose<cr>", desc="DiffviewClose"}
+  },
 }
 
 function M.opts()
