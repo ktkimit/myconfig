@@ -1,7 +1,11 @@
 local M = {
   "kylechui/nvim-surround",
   event = "VeryLazy",
-  opts = {},
+  opts = {
+    keymaps = {
+      visual = "gs"
+    }
+  },
 }
 
 return M
