@@ -1,7 +1,13 @@
 local M = {
   "OXY2DEV/markview.nvim",
   lazy = false,
-  priority = 49,
+
+  opts = {
+    preview = {
+      filetypes = { "md", "markdown", "quarto", "codecompanion" },
+      ignore_buftypes = {},
+    }
+  },
 
   dependencies = {
     "saghen/blink.cmp"
