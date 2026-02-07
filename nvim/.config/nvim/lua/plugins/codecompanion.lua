@@ -1,7 +1,19 @@
 return {
   "olimorris/codecompanion.nvim",
   version = "^18.0.0",
-  opts = {},
+  opts = {
+    extensions = {
+      history = {
+        opts = {
+          save_chat_keymap = "<LocalLeader>s",
+          picker = "fzf-lua",
+          picker_keymaps = {
+            delete = { n = "d", i = "<M-q>" },
+          },
+        }
+      }
+    }
+  },
   keys = {
     {
       "<C-a>",
@@ -26,5 +38,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "zbirenbaum/copilot.lua",
+    "ravitemer/codecompanion-history.nvim",
   },
 }
