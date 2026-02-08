@@ -1,6 +1,13 @@
 return {
   "olimorris/codecompanion.nvim",
   version = "^18.0.0",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "zbirenbaum/copilot.lua",
+    "ravitemer/codecompanion-history.nvim",
+  },
+
   opts = {
     extensions = {
       history = {
@@ -12,32 +19,9 @@ return {
           },
         }
       }
-    }
-  },
-  keys = {
-    {
-      "<C-a>",
-      mode = { "n", "v" },
-      "<cmd>CodeCompanionActions<cr>",
-      desc = "CodeCompanionActions"
     },
-    {
-      "<LocalLeader>a",
-      mode = { "n", "v" },
-      "<cmd>CodeCompanionChat Toggle<cr>",
-      desc = "CodeCompanionChat Toggle"
-    },
-    {
-      "ga",
-      mode = { "v" },
-      "<cmd>CodeCompanionChat Add<cr>",
-      desc = "CodeCompanionChat Add"
-    },
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "zbirenbaum/copilot.lua",
-    "ravitemer/codecompanion-history.nvim",
+    vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true }),
+    vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true }),
+    vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
   },
 }
