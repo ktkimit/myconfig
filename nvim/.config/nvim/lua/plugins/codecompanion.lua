@@ -1,6 +1,6 @@
 return {
   "olimorris/codecompanion.nvim",
-  version = "^18.0.0",
+  version = "^18.6.0",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -12,6 +12,7 @@ return {
     extensions = {
       history = {
         opts = {
+          auto_save = false,
           save_chat_keymap = "<LocalLeader>s",
           picker = "fzf-lua",
           picker_keymaps = {
