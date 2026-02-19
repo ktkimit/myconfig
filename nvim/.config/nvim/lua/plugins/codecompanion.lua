@@ -1,10 +1,13 @@
 return {
   "olimorris/codecompanion.nvim",
-  version = "^18.6.0",
+  version = "^18.7.0",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "zbirenbaum/copilot.lua",
+    {
+      "zbirenbaum/copilot.lua",
+      opts = {}
+    },
     "ravitemer/codecompanion-history.nvim",
   },
 
