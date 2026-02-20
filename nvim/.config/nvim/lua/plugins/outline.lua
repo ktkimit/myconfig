@@ -8,7 +8,7 @@ local M = {
   },
   opts = {
     keymaps = {
-      goto_and_close = '<C-Cr>'
+      goto_and_close = '<C-o>'
     }
   },
 }
