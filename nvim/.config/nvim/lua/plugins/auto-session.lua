@@ -9,6 +9,8 @@ local M = {
     auto_create = false,
     -- allowed_dirs = { '~/dev/*', '~/devs/*' },
     bypass_save_filetypes = { 'alpha', 'dashboard' },
+    git_use_branch_name = true,
+    git_auto_restore_on_branch_change = true,
   }
 }
 
