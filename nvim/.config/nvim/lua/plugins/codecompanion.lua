@@ -11,12 +11,6 @@ return {
     "ravitemer/codecompanion-history.nvim",
   },
 
-  keys = {
-    { "<C-a>", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, noremap = true, silent = true },
-    { "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, noremap = true, silent = true },
-    { "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v", noremap = true, silent = true },
-  },
-
   opts = {
     extensions = {
       history = {
@@ -31,4 +25,9 @@ return {
       }
     },
   },
+
+  vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true }),
+  vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true }),
+  vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true }),
+
 }
