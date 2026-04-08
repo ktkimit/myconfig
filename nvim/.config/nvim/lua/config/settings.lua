@@ -31,6 +31,11 @@ vim.o.smartcase = true
 vim.g.tex_flavor = 'latex'
 
 -- set through vim command
-vim.cmd[[hi CursorLine guibg=#000000]]
+vim.cmd [[hi CursorLine guibg=#000000]]
+
+-- LSP reference highlights (boxed appearance)
+vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true, bold = true, bg = "#504945" })
+vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true, bold = true, bg = "#504945" })
+vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true, bold = true, bg = "#504945" })
 
 vim.lsp.set_log_level("off")

@@ -15,6 +15,28 @@ function M.config()
         vim.lsp.inlay_hint.enable(true)
       end
 
+      -- Highlight references of the word under the cursor
+      if client.supports_method('textDocument/documentHighlight') then
+        local highlight_group = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = false })
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          buffer = ev.buf,
+          group = highlight_group,
+          callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+          buffer = ev.buf,
+          group = highlight_group,
+          callback = vim.lsp.buf.clear_references,
+        })
+        vim.api.nvim_create_autocmd('LspDetach', {
+          group = vim.api.nvim_create_augroup('LspDocumentHighlightDetach', { clear = true }),
+          callback = function(ev2)
+            vim.lsp.buf.clear_references()
+            vim.api.nvim_clear_autocmds { group = highlight_group, buffer = ev2.buf }
+          end,
+        })
+      end
+
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       local opts = { buffer = ev.buf }
@@ -110,13 +132,17 @@ function M.config()
 
   vim.diagnostic.config(config)
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
+  vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+    config = config or {}
+    config.border = "rounded"
+    vim.lsp.handlers.hover(err, result, ctx, config)
+  end
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+  vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
+    config = config or {}
+    config.border = "rounded"
+    vim.lsp.handlers.signature_help(err, result, ctx, config)
+  end
 end
 
 return M
