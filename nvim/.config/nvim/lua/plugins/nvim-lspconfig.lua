@@ -16,7 +16,7 @@ function M.config()
       end
 
       -- Highlight references of the word under the cursor
-      if client.supports_method('textDocument/documentHighlight') then
+      if client:supports_method('textDocument/documentHighlight') then
         local highlight_group = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = false })
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
           buffer = ev.buf,
