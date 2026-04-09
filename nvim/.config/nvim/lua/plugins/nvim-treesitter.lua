@@ -1,5 +1,9 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
+  lazy = false,
+  build = ":TSUpdate",
+  opts = {},
   dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
@@ -15,23 +19,28 @@ local M = {
       event = "VeryLazy",
     },
     { "LiadOz/nvim-dap-repl-highlights" },
-    {
-      "Badhi/nvim-treesitter-cpp-tools",
-      opts = {}
-    }
   },
 }
 
-function M.opts()
-  local configs = require "nvim-treesitter.configs"
-  configs.setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", },
-    sync_install = false,
-    highlight = {
-      enable = true,
-    },
-    indent = { enable = true, },
-  }
+function M.config(_, opts)
+  local ts = require("nvim-treesitter")
+  ts.setup(opts)
+
+  if ts.install then
+    ts.install {
+      "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", "regex", "diff"
+    }
+  end
+
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+      pcall(vim.treesitter.start)
+      if ts.indentexpr then
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+    end,
+  })
 end
 
 return M
