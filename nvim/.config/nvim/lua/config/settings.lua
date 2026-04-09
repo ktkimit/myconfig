@@ -38,4 +38,4 @@ vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true, bold = true, bg =
 vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true, bold = true, bg = "#504945" })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true, bold = true, bg = "#504945" })
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
