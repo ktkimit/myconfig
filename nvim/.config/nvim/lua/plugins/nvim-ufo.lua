@@ -35,7 +35,16 @@ function M.opts()
     end
   end, { desc = "Peek fold" })
 
-  return {}
+  return {
+    provider_selector = function(bufnr, filetype, buftype)
+      -- Skip non-file buffers (e.g. diffview:// URIs) to avoid LSP errors
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      if bufname ~= "" and not bufname:match("^/") and not bufname:match("^%a:[/\\]") then
+        return ""
+      end
+      return { "lsp", "indent" }
+    end,
+  }
 end
 
 return M

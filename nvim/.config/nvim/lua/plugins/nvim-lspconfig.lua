@@ -7,12 +7,18 @@ function M.config()
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
+      -- Skip non-file buffers (e.g. diffview:// URIs) to avoid LSP errors
+      local bufname = vim.api.nvim_buf_get_name(ev.buf)
+      if bufname ~= "" and not bufname:match("^/") and not bufname:match("^%a:[/\\]") then
+        return
+      end
+
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
       local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true)
+        vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
       end
 
       -- Highlight references of the word under the cursor
