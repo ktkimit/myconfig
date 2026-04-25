@@ -5,28 +5,49 @@ return {
     "nvim-treesitter/nvim-treesitter",
     {
       "zbirenbaum/copilot.lua",
-      opts = {}
+      opts = {},
     },
     "ravitemer/codecompanion-history.nvim",
   },
 
-  opts = {
-    extensions = {
-      history = {
-        opts = {
-          auto_save = false,
-          save_chat_keymap = "<LocalLeader>s",
-          picker = "fzf-lua",
-          picker_keymaps = {
-            delete = { n = "d", i = "<M-q>" },
-          },
-        }
-      }
-    },
+  keys = {
+    { "<C-a>", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "CodeCompanion Actions" },
+    { "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "CodeCompanion Chat" },
+    { "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "CodeCompanion Add" },
   },
 
-  vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true }),
-  vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true }),
-  vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true }),
-
+  config = function()
+    require("codecompanion").setup({
+      strategies = {
+        chat = { adapter = "copilot" },
+        inline = { adapter = "copilot" },
+        cmd = { adapter = "copilot" },
+      },
+      adapters = {
+        http = {
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                model = {
+                  default = "claude-opus-4.6",
+                },
+              },
+            })
+          end,
+        },
+      },
+      extensions = {
+        history = {
+          opts = {
+            auto_save = false,
+            save_chat_keymap = "<LocalLeader>s",
+            picker = "fzf-lua",
+            picker_keymaps = {
+              delete = { n = "d", i = "<M-q>" },
+            },
+          },
+        },
+      },
+    })
+  end,
 }
