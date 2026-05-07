@@ -1,7 +1,7 @@
 return {
     '2kabhishek/markit.nvim',
     dependencies = {
-        { '2kabhishek/pickme.nvim', opts = { picker = 'fzf-lua' } },
+        { '2kabhishek/pickme.nvim', opts = { picker = 'fzf-lua', add_default_keybindings = false } },
         'nvim-lua/plenary.nvim',
     },
     event = { 'BufReadPre', 'BufNewFile' },

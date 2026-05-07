@@ -3,6 +3,7 @@ return {
   dependencies = {
     { 'ibhagwan/fzf-lua' },
   },
+  event = "VeryLazy",
   opts = {
     keys = {
       fzf = {
