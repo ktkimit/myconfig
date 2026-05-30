@@ -11,6 +11,7 @@ function M.opts()
   vim.keymap.set("n", "<leader>fr", ":FzfLua lsp_references<CR>", { silent=true, desc = "FzfLua lsp_references" })
   vim.keymap.set("n", "<leader>fd", ":FzfLua lsp_definitions<CR>", { silent=true, desc = "FzfLua lsp_definitions" })
   vim.keymap.set("n", "<Leader>fp", ":FzfLua grep_project<CR>", { silent=true, desc = "FzfLua grep_project" })
+  vim.keymap.set("n", "<Leader>fs", ":FzfLua git_status<CR>", { silent=true, desc = "FzfLua git_status" })
   vim.keymap.set("n", "<F1>", ":FzfLua help_tags<CR>", { silent=true, desc = "FzfLua help_tags" })
   return {}
 end
