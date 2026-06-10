@@ -29,10 +29,6 @@ local M = {
     daily_notes = {
       folder = "daily"
     },
-    completion = {
-      nvim_cmp = false,
-      blink = true
-    },
     legacy_commands = false
   },
 }
