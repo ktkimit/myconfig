@@ -13,4 +13,13 @@ git:
     colorArg: always
 
 os:
-  editCommand: 'nvim'
+  editPreset: 'nvim'
+customCommands:
+  - key: '<c-a>'
+    context: 'files'
+    description: 'Generate commit message with opencode (copy to clipboard)'
+    loadingText: 'Asking opencode for a commit message...'
+    command: '~/.config/lazygit/ai-commit-msg.sh'
+    output: popup
+    outputTitle: 'Commit message (copied to clipboard)'
+
