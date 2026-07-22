@@ -1,7 +1,7 @@
 local M = {
-  "sindrets/diffview.nvim",
+  "dlyongemallo/diffview-plus.nvim",
   keys = {
-    {"<leader>dc", "<cmd>DiffviewClose<cr>", desc="DiffviewClose"}
+    { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" }
   },
 }
 
@@ -65,7 +65,10 @@ function M.opts()
         local wins = vim.api.nvim_tabpage_list_wins(tabnr)
         local was_ours = false
         for _, w in ipairs(wins) do
-          if w == closed_win then was_ours = true break end
+          if w == closed_win then
+            was_ours = true
+            break
+          end
         end
         if not was_ours then return end
         -- Defer so we don't close the tab while WinClosed is mid-flight.
