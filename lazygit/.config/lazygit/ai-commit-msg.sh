@@ -9,8 +9,12 @@ if [ -z "$diff" ]; then
   exit 1
 fi
 
+# Use a throwaway database so these runs never appear in the
+# normal opencode session history.
+SCRATCH_DB="${TMPDIR:-/tmp}/opencode-commit-msg.db"
+
 msg=$(printf '%s' "$diff" \
-  | opencode run --agent commit-msg 'Write a git commit message for these staged changes. Output ONLY the message.' 2>/dev/null \
+  | OPENCODE_DB="$SCRATCH_DB" opencode run --agent commit-msg 'Write a git commit message for these staged changes. Output ONLY the message.' 2>/dev/null \
   | sed 's/\x1b\[[0-9;]*m//g' \
   | sed '/^> .* · /d' \
   | sed '/^[[:space:]]*$/{/./!d}')
