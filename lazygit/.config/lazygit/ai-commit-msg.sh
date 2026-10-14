@@ -17,7 +17,11 @@ msg=$(printf '%s' "$diff" \
   | OPENCODE_DB="$SCRATCH_DB" opencode run --agent commit-msg 'Write a git commit message for these staged changes. Output ONLY the message.' 2>/dev/null \
   | sed 's/\x1b\[[0-9;]*m//g' \
   | sed '/^> .* · /d' \
-  | sed '/^[[:space:]]*$/{/./!d}')
+  | sed '/^[[:space:]]*```/d')
+
+# Trim leading and trailing blank lines, but preserve the blank line
+# that separates the subject from the body.
+msg=$(printf '%s\n' "$msg" | sed -e '/./,$!d' -e ':a' -e '/^\n*$/{$d;N;ba' -e '}')
 
 printf '%s' "$msg" | setsid -f xclip -selection clipboard >/dev/null 2>&1
 

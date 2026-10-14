@@ -2,7 +2,7 @@
 description: Generates concise conventional git commit messages from a staged diff.
 mode: primary
 hidden: true
-model: github-copilot/claude-opus-4.8-fast
+model: github-copilot/gpt-6-luna
 permission:
   edit: deny
   bash: deny
